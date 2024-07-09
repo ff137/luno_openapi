@@ -28,30 +28,63 @@ from luno_openapi.models.detail_fields import DetailFields
 class Transaction(BaseModel):
     """
     Transaction
-    """ # noqa: E501
+    """  # noqa: E501
+
     account_id: Optional[StrictStr] = None
     available: Optional[StrictStr] = Field(default=None, description="Amount available")
-    available_delta: Optional[StrictStr] = Field(default=None, description="Change in amount available")
+    available_delta: Optional[StrictStr] = Field(
+        default=None, description="Change in amount available"
+    )
     balance: Optional[StrictStr] = Field(default=None, description="Account balance")
-    balance_delta: Optional[StrictStr] = Field(default=None, description="Change in balance")
+    balance_delta: Optional[StrictStr] = Field(
+        default=None, description="Change in balance"
+    )
     currency: Optional[StrictStr] = None
-    description: Optional[StrictStr] = Field(default=None, description="Human-readable description of the transaction.")
+    description: Optional[StrictStr] = Field(
+        default=None, description="Human-readable description of the transaction."
+    )
     detail_fields: Optional[DetailFields] = None
-    details: Optional[Dict[str, StrictStr]] = Field(default=None, description="Human-readable label-value attributes.")
-    kind: Optional[StrictStr] = Field(default=None, description="The kind of the transaction indicates the transaction flow  Kinds explained:<br> <code>FEE</code> when transaction is towards Luno fees<br> <code>TRANSFER</code> when the transaction is a one way flow of funds, e.g. a deposit or crypto send<br> <code>EXCHANGE</code> when the transaction is part of a two way exchange, e.g. a trade or instant buy")
-    reference: Optional[StrictStr] = Field(default=None, description="A unique reference for the transaction this statement entry relates to. There may be multiple statement entries related to the same transaction. E.g. a withdrawal and the withdrawal fee are two separate statement entries with the same reference.")
+    details: Optional[Dict[str, StrictStr]] = Field(
+        default=None, description="Human-readable label-value attributes."
+    )
+    kind: Optional[StrictStr] = Field(
+        default=None,
+        description="The kind of the transaction indicates the transaction flow  Kinds explained:<br> <code>FEE</code> when transaction is towards Luno fees<br> <code>TRANSFER</code> when the transaction is a one way flow of funds, e.g. a deposit or crypto send<br> <code>EXCHANGE</code> when the transaction is part of a two way exchange, e.g. a trade or instant buy",
+    )
+    reference: Optional[StrictStr] = Field(
+        default=None,
+        description="A unique reference for the transaction this statement entry relates to. There may be multiple statement entries related to the same transaction. E.g. a withdrawal and the withdrawal fee are two separate statement entries with the same reference.",
+    )
     row_index: Optional[StrictInt] = None
-    timestamp: Optional[StrictStr] = Field(default=None, description="Unix timestamp, in milliseconds")
-    __properties: ClassVar[List[str]] = ["account_id", "available", "available_delta", "balance", "balance_delta", "currency", "description", "detail_fields", "details", "kind", "reference", "row_index", "timestamp"]
+    timestamp: Optional[StrictStr] = Field(
+        default=None, description="Unix timestamp, in milliseconds"
+    )
+    __properties: ClassVar[List[str]] = [
+        "account_id",
+        "available",
+        "available_delta",
+        "balance",
+        "balance_delta",
+        "currency",
+        "description",
+        "detail_fields",
+        "details",
+        "kind",
+        "reference",
+        "row_index",
+        "timestamp",
+    ]
 
-    @field_validator('kind')
+    @field_validator("kind")
     def kind_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['FEE', 'TRANSFER', 'EXCHANGE', 'INTEREST']):
-            raise ValueError("must be one of enum values ('FEE', 'TRANSFER', 'EXCHANGE', 'INTEREST')")
+        if value not in set(["FEE", "TRANSFER", "EXCHANGE", "INTEREST"]):
+            raise ValueError(
+                "must be one of enum values ('FEE', 'TRANSFER', 'EXCHANGE', 'INTEREST')"
+            )
         return value
 
     model_config = ConfigDict(
@@ -59,7 +92,6 @@ class Transaction(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -85,8 +117,7 @@ class Transaction(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -95,7 +126,7 @@ class Transaction(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of detail_fields
         if self.detail_fields:
-            _dict['detail_fields'] = self.detail_fields.to_dict()
+            _dict["detail_fields"] = self.detail_fields.to_dict()
         return _dict
 
     @classmethod
@@ -107,21 +138,25 @@ class Transaction(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "account_id": obj.get("account_id"),
-            "available": obj.get("available"),
-            "available_delta": obj.get("available_delta"),
-            "balance": obj.get("balance"),
-            "balance_delta": obj.get("balance_delta"),
-            "currency": obj.get("currency"),
-            "description": obj.get("description"),
-            "detail_fields": DetailFields.from_dict(obj["detail_fields"]) if obj.get("detail_fields") is not None else None,
-            "details": obj.get("details"),
-            "kind": obj.get("kind"),
-            "reference": obj.get("reference"),
-            "row_index": obj.get("row_index"),
-            "timestamp": obj.get("timestamp")
-        })
+        _obj = cls.model_validate(
+            {
+                "account_id": obj.get("account_id"),
+                "available": obj.get("available"),
+                "available_delta": obj.get("available_delta"),
+                "balance": obj.get("balance"),
+                "balance_delta": obj.get("balance_delta"),
+                "currency": obj.get("currency"),
+                "description": obj.get("description"),
+                "detail_fields": (
+                    DetailFields.from_dict(obj["detail_fields"])
+                    if obj.get("detail_fields") is not None
+                    else None
+                ),
+                "details": obj.get("details"),
+                "kind": obj.get("kind"),
+                "reference": obj.get("reference"),
+                "row_index": obj.get("row_index"),
+                "timestamp": obj.get("timestamp"),
+            }
+        )
         return _obj
-
-

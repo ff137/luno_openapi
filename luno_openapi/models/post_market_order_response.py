@@ -26,8 +26,11 @@ from typing_extensions import Self
 class PostMarketOrderResponse(BaseModel):
     """
     PostMarketOrderResponse
-    """ # noqa: E501
-    order_id: Optional[StrictStr] = Field(default=None, description="Unique order identifier")
+    """  # noqa: E501
+
+    order_id: Optional[StrictStr] = Field(
+        default=None, description="Unique order identifier"
+    )
     __properties: ClassVar[List[str]] = ["order_id"]
 
     model_config = ConfigDict(
@@ -35,7 +38,6 @@ class PostMarketOrderResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -61,8 +63,7 @@ class PostMarketOrderResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -80,9 +81,5 @@ class PostMarketOrderResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "order_id": obj.get("order_id")
-        })
+        _obj = cls.model_validate({"order_id": obj.get("order_id")})
         return _obj
-
-

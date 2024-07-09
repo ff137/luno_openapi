@@ -28,20 +28,26 @@ from luno_openapi.models.transaction import Transaction
 class AccountInfo(BaseModel):
     """
     AccountInfo
-    """ # noqa: E501
+    """  # noqa: E501
+
     currency: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     pending: Optional[List[Transaction]] = None
     transactions: Optional[List[Transaction]] = None
-    __properties: ClassVar[List[str]] = ["currency", "id", "name", "pending", "transactions"]
+    __properties: ClassVar[List[str]] = [
+        "currency",
+        "id",
+        "name",
+        "pending",
+        "transactions",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -67,8 +73,7 @@ class AccountInfo(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -81,14 +86,14 @@ class AccountInfo(BaseModel):
             for _item in self.pending:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['pending'] = _items
+            _dict["pending"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in transactions (list)
         _items = []
         if self.transactions:
             for _item in self.transactions:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['transactions'] = _items
+            _dict["transactions"] = _items
         return _dict
 
     @classmethod
@@ -100,13 +105,21 @@ class AccountInfo(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "currency": obj.get("currency"),
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "pending": [Transaction.from_dict(_item) for _item in obj["pending"]] if obj.get("pending") is not None else None,
-            "transactions": [Transaction.from_dict(_item) for _item in obj["transactions"]] if obj.get("transactions") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "currency": obj.get("currency"),
+                "id": obj.get("id"),
+                "name": obj.get("name"),
+                "pending": (
+                    [Transaction.from_dict(_item) for _item in obj["pending"]]
+                    if obj.get("pending") is not None
+                    else None
+                ),
+                "transactions": (
+                    [Transaction.from_dict(_item) for _item in obj["transactions"]]
+                    if obj.get("transactions") is not None
+                    else None
+                ),
+            }
+        )
         return _obj
-
-

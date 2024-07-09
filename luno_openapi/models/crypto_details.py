@@ -26,7 +26,8 @@ from typing_extensions import Self
 class CryptoDetails(BaseModel):
     """
     CryptoDetails contains a transaction's cryptocurrency address and transaction id
-    """ # noqa: E501
+    """  # noqa: E501
+
     address: Optional[StrictStr] = None
     txid: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["address", "txid"]
@@ -36,7 +37,6 @@ class CryptoDetails(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -62,8 +62,7 @@ class CryptoDetails(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -81,10 +80,7 @@ class CryptoDetails(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "address": obj.get("address"),
-            "txid": obj.get("txid")
-        })
+        _obj = cls.model_validate(
+            {"address": obj.get("address"), "txid": obj.get("txid")}
+        )
         return _obj
-
-

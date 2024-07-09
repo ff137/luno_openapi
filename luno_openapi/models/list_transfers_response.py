@@ -28,7 +28,8 @@ from luno_openapi.models.transfer import Transfer
 class ListTransfersResponse(BaseModel):
     """
     ListTransfersResponse response for /api/1/transfers
-    """ # noqa: E501
+    """  # noqa: E501
+
     transfers: Optional[List[Transfer]] = None
     __properties: ClassVar[List[str]] = ["transfers"]
 
@@ -37,7 +38,6 @@ class ListTransfersResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class ListTransfersResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,7 +76,7 @@ class ListTransfersResponse(BaseModel):
             for _item in self.transfers:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['transfers'] = _items
+            _dict["transfers"] = _items
         return _dict
 
     @classmethod
@@ -89,9 +88,13 @@ class ListTransfersResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "transfers": [Transfer.from_dict(_item) for _item in obj["transfers"]] if obj.get("transfers") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "transfers": (
+                    [Transfer.from_dict(_item) for _item in obj["transfers"]]
+                    if obj.get("transfers") is not None
+                    else None
+                )
+            }
+        )
         return _obj
-
-

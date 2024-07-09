@@ -28,7 +28,8 @@ from luno_openapi.models.market_info import MarketInfo
 class MarketsInfoResponse(BaseModel):
     """
     MarketsInfoResponse response for /api/2/markets
-    """ # noqa: E501
+    """  # noqa: E501
+
     markets: Optional[List[MarketInfo]] = None
     __properties: ClassVar[List[str]] = ["markets"]
 
@@ -37,7 +38,6 @@ class MarketsInfoResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class MarketsInfoResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,7 +76,7 @@ class MarketsInfoResponse(BaseModel):
             for _item in self.markets:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['markets'] = _items
+            _dict["markets"] = _items
         return _dict
 
     @classmethod
@@ -89,9 +88,13 @@ class MarketsInfoResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "markets": [MarketInfo.from_dict(_item) for _item in obj["markets"]] if obj.get("markets") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "markets": (
+                    [MarketInfo.from_dict(_item) for _item in obj["markets"]]
+                    if obj.get("markets") is not None
+                    else None
+                )
+            }
+        )
         return _obj
-
-

@@ -29,7 +29,8 @@ from luno_openapi.models.trade_details import TradeDetails
 class DetailFields(BaseModel):
     """
     DetailFields
-    """ # noqa: E501
+    """  # noqa: E501
+
     crypto_details: Optional[CryptoDetails] = None
     trade_details: Optional[TradeDetails] = None
     __properties: ClassVar[List[str]] = ["crypto_details", "trade_details"]
@@ -39,7 +40,6 @@ class DetailFields(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,8 +65,7 @@ class DetailFields(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -75,10 +74,10 @@ class DetailFields(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of crypto_details
         if self.crypto_details:
-            _dict['crypto_details'] = self.crypto_details.to_dict()
+            _dict["crypto_details"] = self.crypto_details.to_dict()
         # override the default output from pydantic by calling `to_dict()` of trade_details
         if self.trade_details:
-            _dict['trade_details'] = self.trade_details.to_dict()
+            _dict["trade_details"] = self.trade_details.to_dict()
         return _dict
 
     @classmethod
@@ -90,10 +89,18 @@ class DetailFields(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "crypto_details": CryptoDetails.from_dict(obj["crypto_details"]) if obj.get("crypto_details") is not None else None,
-            "trade_details": TradeDetails.from_dict(obj["trade_details"]) if obj.get("trade_details") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "crypto_details": (
+                    CryptoDetails.from_dict(obj["crypto_details"])
+                    if obj.get("crypto_details") is not None
+                    else None
+                ),
+                "trade_details": (
+                    TradeDetails.from_dict(obj["trade_details"])
+                    if obj.get("trade_details") is not None
+                    else None
+                ),
+            }
+        )
         return _obj
-
-

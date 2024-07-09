@@ -26,21 +26,30 @@ from typing_extensions import Self
 class Candle(BaseModel):
     """
     Candle
-    """ # noqa: E501
+    """  # noqa: E501
+
     close: Optional[StrictStr] = Field(default=None, description="Closing price")
     high: Optional[StrictStr] = Field(default=None, description="High price")
     low: Optional[StrictStr] = Field(default=None, description="Low price")
     open: Optional[StrictStr] = Field(default=None, description="Opening price")
-    timestamp: Optional[StrictStr] = Field(default=None, description="Unix timestamp in milliseconds")
+    timestamp: Optional[StrictStr] = Field(
+        default=None, description="Unix timestamp in milliseconds"
+    )
     volume: Optional[StrictStr] = Field(default=None, description="Volume traded")
-    __properties: ClassVar[List[str]] = ["close", "high", "low", "open", "timestamp", "volume"]
+    __properties: ClassVar[List[str]] = [
+        "close",
+        "high",
+        "low",
+        "open",
+        "timestamp",
+        "volume",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -66,8 +75,7 @@ class Candle(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -85,14 +93,14 @@ class Candle(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "close": obj.get("close"),
-            "high": obj.get("high"),
-            "low": obj.get("low"),
-            "open": obj.get("open"),
-            "timestamp": obj.get("timestamp"),
-            "volume": obj.get("volume")
-        })
+        _obj = cls.model_validate(
+            {
+                "close": obj.get("close"),
+                "high": obj.get("high"),
+                "low": obj.get("low"),
+                "open": obj.get("open"),
+                "timestamp": obj.get("timestamp"),
+                "volume": obj.get("volume"),
+            }
+        )
         return _obj
-
-

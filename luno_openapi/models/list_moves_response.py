@@ -28,7 +28,8 @@ from luno_openapi.models.funds_move import FundsMove
 class ListMovesResponse(BaseModel):
     """
     ListMovesResponse response
-    """ # noqa: E501
+    """  # noqa: E501
+
     moves: Optional[List[FundsMove]] = None
     __properties: ClassVar[List[str]] = ["moves"]
 
@@ -37,7 +38,6 @@ class ListMovesResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class ListMovesResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,7 +76,7 @@ class ListMovesResponse(BaseModel):
             for _item in self.moves:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['moves'] = _items
+            _dict["moves"] = _items
         return _dict
 
     @classmethod
@@ -89,9 +88,13 @@ class ListMovesResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "moves": [FundsMove.from_dict(_item) for _item in obj["moves"]] if obj.get("moves") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "moves": (
+                    [FundsMove.from_dict(_item) for _item in obj["moves"]]
+                    if obj.get("moves") is not None
+                    else None
+                )
+            }
+        )
         return _obj
-
-

@@ -26,11 +26,18 @@ from typing_extensions import Self
 class TradeDetails(BaseModel):
     """
     TradeDetails contains a transaction volume, price and pair
-    """ # noqa: E501
+    """  # noqa: E501
+
     pair: Optional[StrictStr] = Field(default=None, description="Pair of the market")
-    price: Optional[StrictStr] = Field(default=None, description="Price at which the volume traded for")
-    sequence: Optional[StrictInt] = Field(default=None, description="Sequence identifies the trade within a market")
-    volume: Optional[StrictStr] = Field(default=None, description="Volume is the amount of base traded")
+    price: Optional[StrictStr] = Field(
+        default=None, description="Price at which the volume traded for"
+    )
+    sequence: Optional[StrictInt] = Field(
+        default=None, description="Sequence identifies the trade within a market"
+    )
+    volume: Optional[StrictStr] = Field(
+        default=None, description="Volume is the amount of base traded"
+    )
     __properties: ClassVar[List[str]] = ["pair", "price", "sequence", "volume"]
 
     model_config = ConfigDict(
@@ -38,7 +45,6 @@ class TradeDetails(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -64,8 +70,7 @@ class TradeDetails(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -83,12 +88,12 @@ class TradeDetails(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "pair": obj.get("pair"),
-            "price": obj.get("price"),
-            "sequence": obj.get("sequence"),
-            "volume": obj.get("volume")
-        })
+        _obj = cls.model_validate(
+            {
+                "pair": obj.get("pair"),
+                "price": obj.get("price"),
+                "sequence": obj.get("sequence"),
+                "volume": obj.get("volume"),
+            }
+        )
         return _obj
-
-

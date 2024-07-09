@@ -26,21 +26,42 @@ from typing_extensions import Self
 class AccountBalance(BaseModel):
     """
     AccountBalance
-    """ # noqa: E501
-    account_id: Optional[StrictStr] = Field(default=None, description="ID of the account.")
-    asset: Optional[StrictStr] = Field(default=None, description="Currency code for the asset held in this account.")
-    balance: Optional[StrictStr] = Field(default=None, description="The amount available to send or trade.")
-    name: Optional[StrictStr] = Field(default=None, description="The name set by the user upon creating the account.")
-    reserved: Optional[StrictStr] = Field(default=None, description="Amount locked by Luno and cannot be sent or traded. This could be due to open orders.")
-    unconfirmed: Optional[StrictStr] = Field(default=None, description="Amount that is awaiting some sort of verification to be credited to this account. This could be an on-chain transaction that Luno is waiting for further block verifications to happen.")
-    __properties: ClassVar[List[str]] = ["account_id", "asset", "balance", "name", "reserved", "unconfirmed"]
+    """  # noqa: E501
+
+    account_id: Optional[StrictStr] = Field(
+        default=None, description="ID of the account."
+    )
+    asset: Optional[StrictStr] = Field(
+        default=None, description="Currency code for the asset held in this account."
+    )
+    balance: Optional[StrictStr] = Field(
+        default=None, description="The amount available to send or trade."
+    )
+    name: Optional[StrictStr] = Field(
+        default=None, description="The name set by the user upon creating the account."
+    )
+    reserved: Optional[StrictStr] = Field(
+        default=None,
+        description="Amount locked by Luno and cannot be sent or traded. This could be due to open orders.",
+    )
+    unconfirmed: Optional[StrictStr] = Field(
+        default=None,
+        description="Amount that is awaiting some sort of verification to be credited to this account. This could be an on-chain transaction that Luno is waiting for further block verifications to happen.",
+    )
+    __properties: ClassVar[List[str]] = [
+        "account_id",
+        "asset",
+        "balance",
+        "name",
+        "reserved",
+        "unconfirmed",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -66,8 +87,7 @@ class AccountBalance(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -85,14 +105,14 @@ class AccountBalance(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "account_id": obj.get("account_id"),
-            "asset": obj.get("asset"),
-            "balance": obj.get("balance"),
-            "name": obj.get("name"),
-            "reserved": obj.get("reserved"),
-            "unconfirmed": obj.get("unconfirmed")
-        })
+        _obj = cls.model_validate(
+            {
+                "account_id": obj.get("account_id"),
+                "asset": obj.get("asset"),
+                "balance": obj.get("balance"),
+                "name": obj.get("name"),
+                "reserved": obj.get("reserved"),
+                "unconfirmed": obj.get("unconfirmed"),
+            }
+        )
         return _obj
-
-

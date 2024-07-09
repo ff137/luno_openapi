@@ -30,10 +30,7 @@ from luno_openapi import rest
 from luno_openapi.api_response import ApiResponse
 from luno_openapi.api_response import T as ApiResponseT
 from luno_openapi.configuration import Configuration
-from luno_openapi.exceptions import (
-    ApiException,
-    ApiValueError,
-)
+from luno_openapi.exceptions import ApiException, ApiValueError
 
 RequestSerialized = Tuple[str, str, Dict[str, str], Optional[str], List[str]]
 

@@ -28,7 +28,8 @@ from luno_openapi.models.address_meta import AddressMeta
 class GetFundingAddressResponse(BaseModel):
     """
     GetFundingAddressResponse get funding address response body
-    """ # noqa: E501
+    """  # noqa: E501
+
     account_id: Optional[StrictStr] = None
     address: Optional[StrictStr] = None
     address_meta: Optional[List[AddressMeta]] = None
@@ -39,14 +40,24 @@ class GetFundingAddressResponse(BaseModel):
     receive_fee: Optional[StrictStr] = None
     total_received: Optional[StrictStr] = None
     total_unconfirmed: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["account_id", "address", "address_meta", "asset", "assigned_at", "name", "qr_code_uri", "receive_fee", "total_received", "total_unconfirmed"]
+    __properties: ClassVar[List[str]] = [
+        "account_id",
+        "address",
+        "address_meta",
+        "asset",
+        "assigned_at",
+        "name",
+        "qr_code_uri",
+        "receive_fee",
+        "total_received",
+        "total_unconfirmed",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -72,8 +83,7 @@ class GetFundingAddressResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -86,7 +96,7 @@ class GetFundingAddressResponse(BaseModel):
             for _item in self.address_meta:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['address_meta'] = _items
+            _dict["address_meta"] = _items
         return _dict
 
     @classmethod
@@ -98,18 +108,22 @@ class GetFundingAddressResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "account_id": obj.get("account_id"),
-            "address": obj.get("address"),
-            "address_meta": [AddressMeta.from_dict(_item) for _item in obj["address_meta"]] if obj.get("address_meta") is not None else None,
-            "asset": obj.get("asset"),
-            "assigned_at": obj.get("assigned_at"),
-            "name": obj.get("name"),
-            "qr_code_uri": obj.get("qr_code_uri"),
-            "receive_fee": obj.get("receive_fee"),
-            "total_received": obj.get("total_received"),
-            "total_unconfirmed": obj.get("total_unconfirmed")
-        })
+        _obj = cls.model_validate(
+            {
+                "account_id": obj.get("account_id"),
+                "address": obj.get("address"),
+                "address_meta": (
+                    [AddressMeta.from_dict(_item) for _item in obj["address_meta"]]
+                    if obj.get("address_meta") is not None
+                    else None
+                ),
+                "asset": obj.get("asset"),
+                "assigned_at": obj.get("assigned_at"),
+                "name": obj.get("name"),
+                "qr_code_uri": obj.get("qr_code_uri"),
+                "receive_fee": obj.get("receive_fee"),
+                "total_received": obj.get("total_received"),
+                "total_unconfirmed": obj.get("total_unconfirmed"),
+            }
+        )
         return _obj
-
-

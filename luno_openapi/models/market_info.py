@@ -26,28 +26,66 @@ from typing_extensions import Self
 class MarketInfo(BaseModel):
     """
     MarketInfo current market information
-    """ # noqa: E501
-    base_currency: Optional[StrictStr] = Field(default=None, description="Base currency code")
-    counter_currency: Optional[StrictStr] = Field(default=None, description="Counter currency code")
-    fee_scale: Optional[StrictInt] = Field(default=None, description="Fee decimal places")
-    market_id: Optional[StrictStr] = Field(default=None, description="Unique identifier for the market")
-    max_price: Optional[StrictStr] = Field(default=None, description="Maximum order price")
-    max_volume: Optional[StrictStr] = Field(default=None, description="Maximum order volume")
-    min_price: Optional[StrictStr] = Field(default=None, description="Minimum order price")
-    min_volume: Optional[StrictStr] = Field(default=None, description="Minimum order volume")
-    price_scale: Optional[StrictInt] = Field(default=None, description="Price decimal places")
-    trading_status: Optional[StrictStr] = Field(default=None, description="Current market trading status:<br> <code>POST_ONLY</code> Trading is indefinitely suspended. This state is commonly used when new markets are being launched to give traders enough time to setup their orders before trading begins. When in this status, orders can only be posted as post-only.<br> <code>ACTIVE</code> Trading is fully enabled.<br> <code>SUSPENDED</code> Trading has been temporarily suspended due to very high volatility. When in this status, orders can only be posted as post-only.<br> <code>Unknown</code> Trading status is unknown. This could indicate a temporary error on the market and should resolve shortly.")
-    volume_scale: Optional[StrictInt] = Field(default=None, description="Volume decimal places")
-    __properties: ClassVar[List[str]] = ["base_currency", "counter_currency", "fee_scale", "market_id", "max_price", "max_volume", "min_price", "min_volume", "price_scale", "trading_status", "volume_scale"]
+    """  # noqa: E501
 
-    @field_validator('trading_status')
+    base_currency: Optional[StrictStr] = Field(
+        default=None, description="Base currency code"
+    )
+    counter_currency: Optional[StrictStr] = Field(
+        default=None, description="Counter currency code"
+    )
+    fee_scale: Optional[StrictInt] = Field(
+        default=None, description="Fee decimal places"
+    )
+    market_id: Optional[StrictStr] = Field(
+        default=None, description="Unique identifier for the market"
+    )
+    max_price: Optional[StrictStr] = Field(
+        default=None, description="Maximum order price"
+    )
+    max_volume: Optional[StrictStr] = Field(
+        default=None, description="Maximum order volume"
+    )
+    min_price: Optional[StrictStr] = Field(
+        default=None, description="Minimum order price"
+    )
+    min_volume: Optional[StrictStr] = Field(
+        default=None, description="Minimum order volume"
+    )
+    price_scale: Optional[StrictInt] = Field(
+        default=None, description="Price decimal places"
+    )
+    trading_status: Optional[StrictStr] = Field(
+        default=None,
+        description="Current market trading status:<br> <code>POST_ONLY</code> Trading is indefinitely suspended. This state is commonly used when new markets are being launched to give traders enough time to setup their orders before trading begins. When in this status, orders can only be posted as post-only.<br> <code>ACTIVE</code> Trading is fully enabled.<br> <code>SUSPENDED</code> Trading has been temporarily suspended due to very high volatility. When in this status, orders can only be posted as post-only.<br> <code>Unknown</code> Trading status is unknown. This could indicate a temporary error on the market and should resolve shortly.",
+    )
+    volume_scale: Optional[StrictInt] = Field(
+        default=None, description="Volume decimal places"
+    )
+    __properties: ClassVar[List[str]] = [
+        "base_currency",
+        "counter_currency",
+        "fee_scale",
+        "market_id",
+        "max_price",
+        "max_volume",
+        "min_price",
+        "min_volume",
+        "price_scale",
+        "trading_status",
+        "volume_scale",
+    ]
+
+    @field_validator("trading_status")
     def trading_status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['POST_ONLY', 'ACTIVE', 'SUSPENDED', 'UNKNOWN']):
-            raise ValueError("must be one of enum values ('POST_ONLY', 'ACTIVE', 'SUSPENDED', 'UNKNOWN')")
+        if value not in set(["POST_ONLY", "ACTIVE", "SUSPENDED", "UNKNOWN"]):
+            raise ValueError(
+                "must be one of enum values ('POST_ONLY', 'ACTIVE', 'SUSPENDED', 'UNKNOWN')"
+            )
         return value
 
     model_config = ConfigDict(
@@ -55,7 +93,6 @@ class MarketInfo(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -81,8 +118,7 @@ class MarketInfo(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -100,19 +136,19 @@ class MarketInfo(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "base_currency": obj.get("base_currency"),
-            "counter_currency": obj.get("counter_currency"),
-            "fee_scale": obj.get("fee_scale"),
-            "market_id": obj.get("market_id"),
-            "max_price": obj.get("max_price"),
-            "max_volume": obj.get("max_volume"),
-            "min_price": obj.get("min_price"),
-            "min_volume": obj.get("min_volume"),
-            "price_scale": obj.get("price_scale"),
-            "trading_status": obj.get("trading_status"),
-            "volume_scale": obj.get("volume_scale")
-        })
+        _obj = cls.model_validate(
+            {
+                "base_currency": obj.get("base_currency"),
+                "counter_currency": obj.get("counter_currency"),
+                "fee_scale": obj.get("fee_scale"),
+                "market_id": obj.get("market_id"),
+                "max_price": obj.get("max_price"),
+                "max_volume": obj.get("max_volume"),
+                "min_price": obj.get("min_price"),
+                "min_volume": obj.get("min_volume"),
+                "price_scale": obj.get("price_scale"),
+                "trading_status": obj.get("trading_status"),
+                "volume_scale": obj.get("volume_scale"),
+            }
+        )
         return _obj
-
-

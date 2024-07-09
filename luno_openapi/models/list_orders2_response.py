@@ -28,7 +28,8 @@ from luno_openapi.models.order_v2 import OrderV2
 class ListOrders2Response(BaseModel):
     """
     ListOrders2Response response for /api/2/listorders
-    """ # noqa: E501
+    """  # noqa: E501
+
     orders: Optional[List[OrderV2]] = None
     __properties: ClassVar[List[str]] = ["orders"]
 
@@ -37,7 +38,6 @@ class ListOrders2Response(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class ListOrders2Response(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,7 +76,7 @@ class ListOrders2Response(BaseModel):
             for _item in self.orders:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['orders'] = _items
+            _dict["orders"] = _items
         return _dict
 
     @classmethod
@@ -89,9 +88,13 @@ class ListOrders2Response(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "orders": [OrderV2.from_dict(_item) for _item in obj["orders"]] if obj.get("orders") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "orders": (
+                    [OrderV2.from_dict(_item) for _item in obj["orders"]]
+                    if obj.get("orders") is not None
+                    else None
+                )
+            }
+        )
         return _obj
-
-

@@ -28,7 +28,8 @@ from luno_openapi.models.ticker import Ticker
 class ListTickersResponse(BaseModel):
     """
     ListTickersResponse response for /api/tickers
-    """ # noqa: E501
+    """  # noqa: E501
+
     tickers: Optional[List[Ticker]] = None
     __properties: ClassVar[List[str]] = ["tickers"]
 
@@ -37,7 +38,6 @@ class ListTickersResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class ListTickersResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,7 +76,7 @@ class ListTickersResponse(BaseModel):
             for _item in self.tickers:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['tickers'] = _items
+            _dict["tickers"] = _items
         return _dict
 
     @classmethod
@@ -89,9 +88,13 @@ class ListTickersResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "tickers": [Ticker.from_dict(_item) for _item in obj["tickers"]] if obj.get("tickers") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "tickers": (
+                    [Ticker.from_dict(_item) for _item in obj["tickers"]]
+                    if obj.get("tickers") is not None
+                    else None
+                )
+            }
+        )
         return _obj
-
-

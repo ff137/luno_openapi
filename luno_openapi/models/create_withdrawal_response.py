@@ -26,26 +26,63 @@ from typing_extensions import Self
 class CreateWithdrawalResponse(BaseModel):
     """
     CreateWithdrawalResponse response
-    """ # noqa: E501
+    """  # noqa: E501
+
     amount: Optional[StrictStr] = Field(default=None, description="Amount to withdraw")
-    created_at: Optional[StrictStr] = Field(default=None, description="Unix time the withdrawal was initiated, in milliseconds")
-    currency: Optional[StrictStr] = Field(default=None, description="Withdrawal currency.")
-    external_id: Optional[StrictStr] = Field(default=None, description="External ID has the value that was passed in when the Withdrawal request was posted.")
+    created_at: Optional[StrictStr] = Field(
+        default=None,
+        description="Unix time the withdrawal was initiated, in milliseconds",
+    )
+    currency: Optional[StrictStr] = Field(
+        default=None, description="Withdrawal currency."
+    )
+    external_id: Optional[StrictStr] = Field(
+        default=None,
+        description="External ID has the value that was passed in when the Withdrawal request was posted.",
+    )
     fee: Optional[StrictStr] = Field(default=None, description="Withdrawal fee")
     id: Optional[StrictStr] = None
     status: Optional[StrictStr] = Field(default=None, description="Status")
-    transfer_id: Optional[StrictStr] = Field(default=None, description="Transfer ID is the identifier of the Withdrawal's transfer once it completes.")
-    type: Optional[StrictStr] = Field(default=None, description="Type distinguishes between different withdrawal methods where more than one is supported for the given currency.")
-    __properties: ClassVar[List[str]] = ["amount", "created_at", "currency", "external_id", "fee", "id", "status", "transfer_id", "type"]
+    transfer_id: Optional[StrictStr] = Field(
+        default=None,
+        description="Transfer ID is the identifier of the Withdrawal's transfer once it completes.",
+    )
+    type: Optional[StrictStr] = Field(
+        default=None,
+        description="Type distinguishes between different withdrawal methods where more than one is supported for the given currency.",
+    )
+    __properties: ClassVar[List[str]] = [
+        "amount",
+        "created_at",
+        "currency",
+        "external_id",
+        "fee",
+        "id",
+        "status",
+        "transfer_id",
+        "type",
+    ]
 
-    @field_validator('status')
+    @field_validator("status")
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'WAITING', 'CANCELLING', 'UNKNOWN']):
-            raise ValueError("must be one of enum values ('PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'WAITING', 'CANCELLING', 'UNKNOWN')")
+        if value not in set(
+            [
+                "PENDING",
+                "PROCESSING",
+                "COMPLETED",
+                "CANCELLED",
+                "WAITING",
+                "CANCELLING",
+                "UNKNOWN",
+            ]
+        ):
+            raise ValueError(
+                "must be one of enum values ('PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'WAITING', 'CANCELLING', 'UNKNOWN')"
+            )
         return value
 
     model_config = ConfigDict(
@@ -53,7 +90,6 @@ class CreateWithdrawalResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -79,8 +115,7 @@ class CreateWithdrawalResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -98,17 +133,17 @@ class CreateWithdrawalResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "amount": obj.get("amount"),
-            "created_at": obj.get("created_at"),
-            "currency": obj.get("currency"),
-            "external_id": obj.get("external_id"),
-            "fee": obj.get("fee"),
-            "id": obj.get("id"),
-            "status": obj.get("status"),
-            "transfer_id": obj.get("transfer_id"),
-            "type": obj.get("type")
-        })
+        _obj = cls.model_validate(
+            {
+                "amount": obj.get("amount"),
+                "created_at": obj.get("created_at"),
+                "currency": obj.get("currency"),
+                "external_id": obj.get("external_id"),
+                "fee": obj.get("fee"),
+                "id": obj.get("id"),
+                "status": obj.get("status"),
+                "transfer_id": obj.get("transfer_id"),
+                "type": obj.get("type"),
+            }
+        )
         return _obj
-
-

@@ -28,7 +28,8 @@ from luno_openapi.models.withdrawal import Withdrawal
 class ListWithdrawalsResponse(BaseModel):
     """
     ListWithdrawalsResponse response
-    """ # noqa: E501
+    """  # noqa: E501
+
     withdrawals: Optional[List[Withdrawal]] = None
     __properties: ClassVar[List[str]] = ["withdrawals"]
 
@@ -37,7 +38,6 @@ class ListWithdrawalsResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class ListWithdrawalsResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,7 +76,7 @@ class ListWithdrawalsResponse(BaseModel):
             for _item in self.withdrawals:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['withdrawals'] = _items
+            _dict["withdrawals"] = _items
         return _dict
 
     @classmethod
@@ -89,9 +88,13 @@ class ListWithdrawalsResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "withdrawals": [Withdrawal.from_dict(_item) for _item in obj["withdrawals"]] if obj.get("withdrawals") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "withdrawals": (
+                    [Withdrawal.from_dict(_item) for _item in obj["withdrawals"]]
+                    if obj.get("withdrawals") is not None
+                    else None
+                )
+            }
+        )
         return _obj
-
-

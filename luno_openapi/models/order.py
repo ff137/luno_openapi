@@ -26,40 +26,87 @@ from typing_extensions import Self
 class Order(BaseModel):
     """
     The `base` and `counter` amounts are the principal amounts that were traded, ignoring fees. For example, if the order resulted in a single trade of 1 BTC for 1000 ZAR, then `base`=1 BTC and `counter`=1000 ZAR.  The `fee_base` and `fee_counter` amounts are the fees debited after the trade principal amounts.  For example, for a buy order, `base - base_fee` would be credited to the BTC account and `counter + counter_fee` would be debited from the ZAR account. Similarly, for a sell order, `counter - counter_fee` would be credited to the ZAR account and `base + base_fee` would be debited from the BTC account.
-    """ # noqa: E501
-    base: Optional[StrictStr] = Field(default=None, description="Amount of base filled, this value is always positive.")
-    completed_timestamp: Optional[StrictStr] = Field(default=None, description="Time of order completion (Unix milliseconds)  This value is set at the time of this order leaving the order book, either immediately upon posting or later on due to a trade or cancellation. Whilst the order is still pending/live it will be 0.")
-    counter: Optional[StrictStr] = Field(default=None, description="Amount of counter filled, this value is always positive.")
-    creation_timestamp: Optional[StrictStr] = Field(default=None, description="Time of order creation (Unix milliseconds)")
-    expiration_timestamp: Optional[StrictStr] = Field(default=None, description="Time of order expiration (Unix milliseconds)  This value is set at the time of processing a request from you to cancel the order, otherwise it will be 0.")
-    fee_base: Optional[StrictStr] = Field(default=None, description="Base amount of fees to be charged")
-    fee_counter: Optional[StrictStr] = Field(default=None, description="Counter amount of fees to be charged")
-    limit_price: Optional[StrictStr] = Field(default=None, description="Limit price to transact")
-    limit_volume: Optional[StrictStr] = Field(default=None, description="Limit volume to transact")
+    """  # noqa: E501
+
+    base: Optional[StrictStr] = Field(
+        default=None,
+        description="Amount of base filled, this value is always positive.",
+    )
+    completed_timestamp: Optional[StrictStr] = Field(
+        default=None,
+        description="Time of order completion (Unix milliseconds)  This value is set at the time of this order leaving the order book, either immediately upon posting or later on due to a trade or cancellation. Whilst the order is still pending/live it will be 0.",
+    )
+    counter: Optional[StrictStr] = Field(
+        default=None,
+        description="Amount of counter filled, this value is always positive.",
+    )
+    creation_timestamp: Optional[StrictStr] = Field(
+        default=None, description="Time of order creation (Unix milliseconds)"
+    )
+    expiration_timestamp: Optional[StrictStr] = Field(
+        default=None,
+        description="Time of order expiration (Unix milliseconds)  This value is set at the time of processing a request from you to cancel the order, otherwise it will be 0.",
+    )
+    fee_base: Optional[StrictStr] = Field(
+        default=None, description="Base amount of fees to be charged"
+    )
+    fee_counter: Optional[StrictStr] = Field(
+        default=None, description="Counter amount of fees to be charged"
+    )
+    limit_price: Optional[StrictStr] = Field(
+        default=None, description="Limit price to transact"
+    )
+    limit_volume: Optional[StrictStr] = Field(
+        default=None, description="Limit volume to transact"
+    )
     order_id: Optional[StrictStr] = None
     pair: Optional[StrictStr] = Field(default=None, description="Specifies the market.")
-    state: Optional[StrictStr] = Field(default=None, description="<code>PENDING</code> The order has been placed. Some trades may have taken place but the order is not filled yet.<br> <code>COMPLETE</code> The order is no longer active. It has been settled or has been cancelled.")
-    time_in_force: Optional[StrictStr] = Field(default=None, description="The Time in force option used when the LimitOrder was posted.  Only returned on limit orders.<br> <code>GTC</code> Good 'Til Cancelled. The order remains open until it is filled or cancelled by the user. (default)</br> <code>IOC</code> Immediate Or Cancel. The part of the order that cannot be filled immediately will be cancelled. Cannot be post-only.</br> <code>FOK</code> Fill Or Kill. If the order cannot be filled immediately and completely it will be cancelled before any trade. Cannot be post-only.")
-    type: Optional[StrictStr] = Field(default=None, description="<code>BUY</code> buy market order.<br> <code>SELL</code> sell market order.<br> <code>BID</code> bid (buy) limit order.<br> <code>ASK</code> ask (sell) limit order.")
-    __properties: ClassVar[List[str]] = ["base", "completed_timestamp", "counter", "creation_timestamp", "expiration_timestamp", "fee_base", "fee_counter", "limit_price", "limit_volume", "order_id", "pair", "state", "time_in_force", "type"]
+    state: Optional[StrictStr] = Field(
+        default=None,
+        description="<code>PENDING</code> The order has been placed. Some trades may have taken place but the order is not filled yet.<br> <code>COMPLETE</code> The order is no longer active. It has been settled or has been cancelled.",
+    )
+    time_in_force: Optional[StrictStr] = Field(
+        default=None,
+        description="The Time in force option used when the LimitOrder was posted.  Only returned on limit orders.<br> <code>GTC</code> Good 'Til Cancelled. The order remains open until it is filled or cancelled by the user. (default)</br> <code>IOC</code> Immediate Or Cancel. The part of the order that cannot be filled immediately will be cancelled. Cannot be post-only.</br> <code>FOK</code> Fill Or Kill. If the order cannot be filled immediately and completely it will be cancelled before any trade. Cannot be post-only.",
+    )
+    type: Optional[StrictStr] = Field(
+        default=None,
+        description="<code>BUY</code> buy market order.<br> <code>SELL</code> sell market order.<br> <code>BID</code> bid (buy) limit order.<br> <code>ASK</code> ask (sell) limit order.",
+    )
+    __properties: ClassVar[List[str]] = [
+        "base",
+        "completed_timestamp",
+        "counter",
+        "creation_timestamp",
+        "expiration_timestamp",
+        "fee_base",
+        "fee_counter",
+        "limit_price",
+        "limit_volume",
+        "order_id",
+        "pair",
+        "state",
+        "time_in_force",
+        "type",
+    ]
 
-    @field_validator('state')
+    @field_validator("state")
     def state_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['PENDING', 'COMPLETE']):
+        if value not in set(["PENDING", "COMPLETE"]):
             raise ValueError("must be one of enum values ('PENDING', 'COMPLETE')")
         return value
 
-    @field_validator('type')
+    @field_validator("type")
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['BUY', 'SELL', 'BID', 'ASK']):
+        if value not in set(["BUY", "SELL", "BID", "ASK"]):
             raise ValueError("must be one of enum values ('BUY', 'SELL', 'BID', 'ASK')")
         return value
 
@@ -68,7 +115,6 @@ class Order(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -94,8 +140,7 @@ class Order(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -113,22 +158,22 @@ class Order(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "base": obj.get("base"),
-            "completed_timestamp": obj.get("completed_timestamp"),
-            "counter": obj.get("counter"),
-            "creation_timestamp": obj.get("creation_timestamp"),
-            "expiration_timestamp": obj.get("expiration_timestamp"),
-            "fee_base": obj.get("fee_base"),
-            "fee_counter": obj.get("fee_counter"),
-            "limit_price": obj.get("limit_price"),
-            "limit_volume": obj.get("limit_volume"),
-            "order_id": obj.get("order_id"),
-            "pair": obj.get("pair"),
-            "state": obj.get("state"),
-            "time_in_force": obj.get("time_in_force"),
-            "type": obj.get("type")
-        })
+        _obj = cls.model_validate(
+            {
+                "base": obj.get("base"),
+                "completed_timestamp": obj.get("completed_timestamp"),
+                "counter": obj.get("counter"),
+                "creation_timestamp": obj.get("creation_timestamp"),
+                "expiration_timestamp": obj.get("expiration_timestamp"),
+                "fee_base": obj.get("fee_base"),
+                "fee_counter": obj.get("fee_counter"),
+                "limit_price": obj.get("limit_price"),
+                "limit_volume": obj.get("limit_volume"),
+                "order_id": obj.get("order_id"),
+                "pair": obj.get("pair"),
+                "state": obj.get("state"),
+                "time_in_force": obj.get("time_in_force"),
+                "type": obj.get("type"),
+            }
+        )
         return _obj
-
-

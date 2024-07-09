@@ -26,24 +26,44 @@ from typing_extensions import Self
 class Ticker(BaseModel):
     """
     Ticker summarised instant market data
-    """ # noqa: E501
+    """  # noqa: E501
+
     ask: Optional[StrictStr] = Field(default=None, description="The lowest ask price")
     bid: Optional[StrictStr] = Field(default=None, description="The highest bid price")
-    last_trade: Optional[StrictStr] = Field(default=None, description="Last trade price")
+    last_trade: Optional[StrictStr] = Field(
+        default=None, description="Last trade price"
+    )
     pair: Optional[StrictStr] = None
-    rolling_24_hour_volume: Optional[StrictStr] = Field(default=None, description="24h rolling trade volume")
-    status: Optional[StrictStr] = Field(default=None, description="Market current status  <code>ACTIVE</code> when the market is trading normally  <code>POSTONLY</code> when the market has been suspended and only post-only orders will be accepted  <code>DISABLED</code> when the market is shutdown and no orders can be accepted  <code>UNKNOWN</code> the market status could not be determined. This is a temporary state.")
-    timestamp: Optional[StrictStr] = Field(default=None, description="Unix timestamp in milliseconds of the tick")
-    __properties: ClassVar[List[str]] = ["ask", "bid", "last_trade", "pair", "rolling_24_hour_volume", "status", "timestamp"]
+    rolling_24_hour_volume: Optional[StrictStr] = Field(
+        default=None, description="24h rolling trade volume"
+    )
+    status: Optional[StrictStr] = Field(
+        default=None,
+        description="Market current status  <code>ACTIVE</code> when the market is trading normally  <code>POSTONLY</code> when the market has been suspended and only post-only orders will be accepted  <code>DISABLED</code> when the market is shutdown and no orders can be accepted  <code>UNKNOWN</code> the market status could not be determined. This is a temporary state.",
+    )
+    timestamp: Optional[StrictStr] = Field(
+        default=None, description="Unix timestamp in milliseconds of the tick"
+    )
+    __properties: ClassVar[List[str]] = [
+        "ask",
+        "bid",
+        "last_trade",
+        "pair",
+        "rolling_24_hour_volume",
+        "status",
+        "timestamp",
+    ]
 
-    @field_validator('status')
+    @field_validator("status")
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['ACTIVE', 'POSTONLY', 'DISABLED', 'UNKNOWN']):
-            raise ValueError("must be one of enum values ('ACTIVE', 'POSTONLY', 'DISABLED', 'UNKNOWN')")
+        if value not in set(["ACTIVE", "POSTONLY", "DISABLED", "UNKNOWN"]):
+            raise ValueError(
+                "must be one of enum values ('ACTIVE', 'POSTONLY', 'DISABLED', 'UNKNOWN')"
+            )
         return value
 
     model_config = ConfigDict(
@@ -51,7 +71,6 @@ class Ticker(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -77,8 +96,7 @@ class Ticker(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -96,15 +114,15 @@ class Ticker(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "ask": obj.get("ask"),
-            "bid": obj.get("bid"),
-            "last_trade": obj.get("last_trade"),
-            "pair": obj.get("pair"),
-            "rolling_24_hour_volume": obj.get("rolling_24_hour_volume"),
-            "status": obj.get("status"),
-            "timestamp": obj.get("timestamp")
-        })
+        _obj = cls.model_validate(
+            {
+                "ask": obj.get("ask"),
+                "bid": obj.get("bid"),
+                "last_trade": obj.get("last_trade"),
+                "pair": obj.get("pair"),
+                "rolling_24_hour_volume": obj.get("rolling_24_hour_volume"),
+                "status": obj.get("status"),
+                "timestamp": obj.get("timestamp"),
+            }
+        )
         return _obj
-
-

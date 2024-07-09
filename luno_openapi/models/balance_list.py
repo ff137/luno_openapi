@@ -28,7 +28,8 @@ from luno_openapi.models.account_balance import AccountBalance
 class BalanceList(BaseModel):
     """
     BalanceList
-    """ # noqa: E501
+    """  # noqa: E501
+
     balance: Optional[List[AccountBalance]] = None
     __properties: ClassVar[List[str]] = ["balance"]
 
@@ -37,7 +38,6 @@ class BalanceList(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class BalanceList(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,7 +76,7 @@ class BalanceList(BaseModel):
             for _item in self.balance:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['balance'] = _items
+            _dict["balance"] = _items
         return _dict
 
     @classmethod
@@ -89,9 +88,13 @@ class BalanceList(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "balance": [AccountBalance.from_dict(_item) for _item in obj["balance"]] if obj.get("balance") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "balance": (
+                    [AccountBalance.from_dict(_item) for _item in obj["balance"]]
+                    if obj.get("balance") is not None
+                    else None
+                )
+            }
+        )
         return _obj
-
-

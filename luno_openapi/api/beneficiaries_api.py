@@ -13,13 +13,7 @@
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import (
-    Field,
-    StrictFloat,
-    StrictInt,
-    StrictStr,
-    validate_call,
-)
+from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
 from typing_extensions import Annotated
 
 from luno_openapi.api_client import ApiClient, RequestSerialized

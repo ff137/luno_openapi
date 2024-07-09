@@ -26,21 +26,44 @@ from typing_extensions import Self
 class Transfer(BaseModel):
     """
     Transfer
-    """ # noqa: E501
-    amount: Optional[StrictStr] = Field(default=None, description="Amount that has been credited or debited on the account. This is always a positive value regardless of the transfer direction.")
-    created_at: Optional[StrictStr] = Field(default=None, description="Unix timestamp the transfer was initiated, in milliseconds")
-    fee: Optional[StrictStr] = Field(default=None, description="Fee that has been charged by Luno with regards to this transfer. This is not included in the `amount`. For example, if you receive a transaction with the raw amount of 1 BTC and we charge a `fee` of 0.003 BTC on this transaction you will be credited the `amount` of 0.997 BTC.")
-    id: Optional[StrictStr] = Field(default=None, description="Transfer unique identifier")
-    inbound: Optional[StrictBool] = Field(default=None, description="True for credit transfers, false for debits.")
-    transaction_id: Optional[StrictStr] = Field(default=None, description="When the transfer reflects an on-chain transaction this field will have the transaction ID.")
-    __properties: ClassVar[List[str]] = ["amount", "created_at", "fee", "id", "inbound", "transaction_id"]
+    """  # noqa: E501
+
+    amount: Optional[StrictStr] = Field(
+        default=None,
+        description="Amount that has been credited or debited on the account. This is always a positive value regardless of the transfer direction.",
+    )
+    created_at: Optional[StrictStr] = Field(
+        default=None,
+        description="Unix timestamp the transfer was initiated, in milliseconds",
+    )
+    fee: Optional[StrictStr] = Field(
+        default=None,
+        description="Fee that has been charged by Luno with regards to this transfer. This is not included in the `amount`. For example, if you receive a transaction with the raw amount of 1 BTC and we charge a `fee` of 0.003 BTC on this transaction you will be credited the `amount` of 0.997 BTC.",
+    )
+    id: Optional[StrictStr] = Field(
+        default=None, description="Transfer unique identifier"
+    )
+    inbound: Optional[StrictBool] = Field(
+        default=None, description="True for credit transfers, false for debits."
+    )
+    transaction_id: Optional[StrictStr] = Field(
+        default=None,
+        description="When the transfer reflects an on-chain transaction this field will have the transaction ID.",
+    )
+    __properties: ClassVar[List[str]] = [
+        "amount",
+        "created_at",
+        "fee",
+        "id",
+        "inbound",
+        "transaction_id",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -66,8 +89,7 @@ class Transfer(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -85,14 +107,14 @@ class Transfer(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "amount": obj.get("amount"),
-            "created_at": obj.get("created_at"),
-            "fee": obj.get("fee"),
-            "id": obj.get("id"),
-            "inbound": obj.get("inbound"),
-            "transaction_id": obj.get("transaction_id")
-        })
+        _obj = cls.model_validate(
+            {
+                "amount": obj.get("amount"),
+                "created_at": obj.get("created_at"),
+                "fee": obj.get("fee"),
+                "id": obj.get("id"),
+                "inbound": obj.get("inbound"),
+                "transaction_id": obj.get("transaction_id"),
+            }
+        )
         return _obj
-
-

@@ -26,7 +26,8 @@ from typing_extensions import Self
 class GetFeeInfoResponse(BaseModel):
     """
     GetFeeInfoResponse response object for get fee info calls
-    """ # noqa: E501
+    """  # noqa: E501
+
     maker_fee: Optional[StrictStr] = None
     taker_fee: Optional[StrictStr] = None
     thirty_day_volume: Optional[StrictStr] = None
@@ -37,7 +38,6 @@ class GetFeeInfoResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class GetFeeInfoResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -82,11 +81,11 @@ class GetFeeInfoResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "maker_fee": obj.get("maker_fee"),
-            "taker_fee": obj.get("taker_fee"),
-            "thirty_day_volume": obj.get("thirty_day_volume")
-        })
+        _obj = cls.model_validate(
+            {
+                "maker_fee": obj.get("maker_fee"),
+                "taker_fee": obj.get("taker_fee"),
+                "thirty_day_volume": obj.get("thirty_day_volume"),
+            }
+        )
         return _obj
-
-

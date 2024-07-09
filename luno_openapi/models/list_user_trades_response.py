@@ -28,7 +28,8 @@ from luno_openapi.models.trade_v2 import TradeV2
 class ListUserTradesResponse(BaseModel):
     """
     ListUserTradesResponse response for /api/1/listtrades
-    """ # noqa: E501
+    """  # noqa: E501
+
     trades: Optional[List[TradeV2]] = None
     __properties: ClassVar[List[str]] = ["trades"]
 
@@ -37,7 +38,6 @@ class ListUserTradesResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class ListUserTradesResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,7 +76,7 @@ class ListUserTradesResponse(BaseModel):
             for _item in self.trades:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['trades'] = _items
+            _dict["trades"] = _items
         return _dict
 
     @classmethod
@@ -89,9 +88,13 @@ class ListUserTradesResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "trades": [TradeV2.from_dict(_item) for _item in obj["trades"]] if obj.get("trades") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "trades": (
+                    [TradeV2.from_dict(_item) for _item in obj["trades"]]
+                    if obj.get("trades") is not None
+                    else None
+                )
+            }
+        )
         return _obj
-
-

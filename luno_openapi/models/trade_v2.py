@@ -34,29 +34,57 @@ from typing_extensions import Self
 class TradeV2(BaseModel):
     """
     TradeV2
-    """ # noqa: E501
+    """  # noqa: E501
+
     base: Optional[StrictStr] = Field(default=None, description="Amount of base filled")
-    client_order_id: Optional[StrictStr] = Field(default=None, description="Client Order ID has the value that was passed in when the Order was posted.")
-    counter: Optional[StrictStr] = Field(default=None, description="Amount of counter filled")
-    fee_base: Optional[StrictStr] = Field(default=None, description="Base amount of fees charged")
-    fee_counter: Optional[StrictStr] = Field(default=None, description="Counter amount of fees charged")
+    client_order_id: Optional[StrictStr] = Field(
+        default=None,
+        description="Client Order ID has the value that was passed in when the Order was posted.",
+    )
+    counter: Optional[StrictStr] = Field(
+        default=None, description="Amount of counter filled"
+    )
+    fee_base: Optional[StrictStr] = Field(
+        default=None, description="Base amount of fees charged"
+    )
+    fee_counter: Optional[StrictStr] = Field(
+        default=None, description="Counter amount of fees charged"
+    )
     is_buy: Optional[StrictBool] = None
-    order_id: Optional[StrictStr] = Field(default=None, description="Unique order identifier")
+    order_id: Optional[StrictStr] = Field(
+        default=None, description="Unique order identifier"
+    )
     pair: Optional[StrictStr] = Field(default=None, description="Currency pair")
     price: Optional[StrictStr] = Field(default=None, description="Order price")
     sequence: Optional[StrictInt] = None
-    timestamp: Optional[StrictStr] = Field(default=None, description="Unix timestamp in milliseconds")
+    timestamp: Optional[StrictStr] = Field(
+        default=None, description="Unix timestamp in milliseconds"
+    )
     type: Optional[StrictStr] = Field(default=None, description="Order type")
     volume: Optional[StrictStr] = Field(default=None, description="Order volume")
-    __properties: ClassVar[List[str]] = ["base", "client_order_id", "counter", "fee_base", "fee_counter", "is_buy", "order_id", "pair", "price", "sequence", "timestamp", "type", "volume"]
+    __properties: ClassVar[List[str]] = [
+        "base",
+        "client_order_id",
+        "counter",
+        "fee_base",
+        "fee_counter",
+        "is_buy",
+        "order_id",
+        "pair",
+        "price",
+        "sequence",
+        "timestamp",
+        "type",
+        "volume",
+    ]
 
-    @field_validator('type')
+    @field_validator("type")
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['BID', 'ASK']):
+        if value not in set(["BID", "ASK"]):
             raise ValueError("must be one of enum values ('BID', 'ASK')")
         return value
 
@@ -65,7 +93,6 @@ class TradeV2(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -91,8 +118,7 @@ class TradeV2(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -110,21 +136,21 @@ class TradeV2(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "base": obj.get("base"),
-            "client_order_id": obj.get("client_order_id"),
-            "counter": obj.get("counter"),
-            "fee_base": obj.get("fee_base"),
-            "fee_counter": obj.get("fee_counter"),
-            "is_buy": obj.get("is_buy"),
-            "order_id": obj.get("order_id"),
-            "pair": obj.get("pair"),
-            "price": obj.get("price"),
-            "sequence": obj.get("sequence"),
-            "timestamp": obj.get("timestamp"),
-            "type": obj.get("type"),
-            "volume": obj.get("volume")
-        })
+        _obj = cls.model_validate(
+            {
+                "base": obj.get("base"),
+                "client_order_id": obj.get("client_order_id"),
+                "counter": obj.get("counter"),
+                "fee_base": obj.get("fee_base"),
+                "fee_counter": obj.get("fee_counter"),
+                "is_buy": obj.get("is_buy"),
+                "order_id": obj.get("order_id"),
+                "pair": obj.get("pair"),
+                "price": obj.get("price"),
+                "sequence": obj.get("sequence"),
+                "timestamp": obj.get("timestamp"),
+                "type": obj.get("type"),
+                "volume": obj.get("volume"),
+            }
+        )
         return _obj
-
-

@@ -28,9 +28,12 @@ from luno_openapi.models.candle import Candle
 class GetCandlesResponse(BaseModel):
     """
     GetCandlesResponse response
-    """ # noqa: E501
+    """  # noqa: E501
+
     candles: Optional[List[Candle]] = None
-    duration: Optional[StrictInt] = Field(default=None, description="Duration in seconds")
+    duration: Optional[StrictInt] = Field(
+        default=None, description="Duration in seconds"
+    )
     pair: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["candles", "duration", "pair"]
 
@@ -39,7 +42,6 @@ class GetCandlesResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,8 +67,7 @@ class GetCandlesResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -79,7 +80,7 @@ class GetCandlesResponse(BaseModel):
             for _item in self.candles:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['candles'] = _items
+            _dict["candles"] = _items
         return _dict
 
     @classmethod
@@ -91,11 +92,15 @@ class GetCandlesResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "candles": [Candle.from_dict(_item) for _item in obj["candles"]] if obj.get("candles") is not None else None,
-            "duration": obj.get("duration"),
-            "pair": obj.get("pair")
-        })
+        _obj = cls.model_validate(
+            {
+                "candles": (
+                    [Candle.from_dict(_item) for _item in obj["candles"]]
+                    if obj.get("candles") is not None
+                    else None
+                ),
+                "duration": obj.get("duration"),
+                "pair": obj.get("pair"),
+            }
+        )
         return _obj
-
-

@@ -26,20 +26,37 @@ from typing_extensions import Self
 class PublicTrade(BaseModel):
     """
     PublicTrade
-    """ # noqa: E501
-    is_buy: Optional[StrictBool] = Field(default=None, description="Whether the taker was buying or not.")
-    price: Optional[StrictStr] = Field(default=None, description="Price at which the asset traded at")
-    sequence: Optional[StrictInt] = Field(default=None, description="The ever incrementing trade identifier within a market")
-    timestamp: Optional[StrictStr] = Field(default=None, description="Unix timestamp in milliseconds")
-    volume: Optional[StrictStr] = Field(default=None, description="Amount of assets traded")
-    __properties: ClassVar[List[str]] = ["is_buy", "price", "sequence", "timestamp", "volume"]
+    """  # noqa: E501
+
+    is_buy: Optional[StrictBool] = Field(
+        default=None, description="Whether the taker was buying or not."
+    )
+    price: Optional[StrictStr] = Field(
+        default=None, description="Price at which the asset traded at"
+    )
+    sequence: Optional[StrictInt] = Field(
+        default=None,
+        description="The ever incrementing trade identifier within a market",
+    )
+    timestamp: Optional[StrictStr] = Field(
+        default=None, description="Unix timestamp in milliseconds"
+    )
+    volume: Optional[StrictStr] = Field(
+        default=None, description="Amount of assets traded"
+    )
+    __properties: ClassVar[List[str]] = [
+        "is_buy",
+        "price",
+        "sequence",
+        "timestamp",
+        "volume",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,8 +82,7 @@ class PublicTrade(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -84,13 +100,13 @@ class PublicTrade(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "is_buy": obj.get("is_buy"),
-            "price": obj.get("price"),
-            "sequence": obj.get("sequence"),
-            "timestamp": obj.get("timestamp"),
-            "volume": obj.get("volume")
-        })
+        _obj = cls.model_validate(
+            {
+                "is_buy": obj.get("is_buy"),
+                "price": obj.get("price"),
+                "sequence": obj.get("sequence"),
+                "timestamp": obj.get("timestamp"),
+                "volume": obj.get("volume"),
+            }
+        )
         return _obj
-
-

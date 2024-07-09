@@ -26,9 +26,14 @@ from typing_extensions import Self
 class OrderBookEntry(BaseModel):
     """
     OrderBookEntry is the representation of one or more order resting in the order book.
-    """ # noqa: E501
-    price: Optional[StrictStr] = Field(default=None, description="Limit price at which orders are trading at")
-    volume: Optional[StrictStr] = Field(default=None, description="The volume available at the limit price")
+    """  # noqa: E501
+
+    price: Optional[StrictStr] = Field(
+        default=None, description="Limit price at which orders are trading at"
+    )
+    volume: Optional[StrictStr] = Field(
+        default=None, description="The volume available at the limit price"
+    )
     __properties: ClassVar[List[str]] = ["price", "volume"]
 
     model_config = ConfigDict(
@@ -36,7 +41,6 @@ class OrderBookEntry(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -62,8 +66,7 @@ class OrderBookEntry(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -81,10 +84,7 @@ class OrderBookEntry(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "price": obj.get("price"),
-            "volume": obj.get("volume")
-        })
+        _obj = cls.model_validate(
+            {"price": obj.get("price"), "volume": obj.get("volume")}
+        )
         return _obj
-
-

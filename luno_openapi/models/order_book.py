@@ -28,10 +28,17 @@ from luno_openapi.models.order_book_entry import OrderBookEntry
 class OrderBook(BaseModel):
     """
     OrderBook
-    """ # noqa: E501
-    asks: Optional[List[OrderBookEntry]] = Field(default=None, description="List of asks sorted from lowest to highest price")
-    bids: Optional[List[OrderBookEntry]] = Field(default=None, description="List of bids sorted from highest to lowest price")
-    timestamp: Optional[StrictInt] = Field(default=None, description="Unix timestamp in milliseconds")
+    """  # noqa: E501
+
+    asks: Optional[List[OrderBookEntry]] = Field(
+        default=None, description="List of asks sorted from lowest to highest price"
+    )
+    bids: Optional[List[OrderBookEntry]] = Field(
+        default=None, description="List of bids sorted from highest to lowest price"
+    )
+    timestamp: Optional[StrictInt] = Field(
+        default=None, description="Unix timestamp in milliseconds"
+    )
     __properties: ClassVar[List[str]] = ["asks", "bids", "timestamp"]
 
     model_config = ConfigDict(
@@ -39,7 +46,6 @@ class OrderBook(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -65,8 +71,7 @@ class OrderBook(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -79,14 +84,14 @@ class OrderBook(BaseModel):
             for _item in self.asks:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['asks'] = _items
+            _dict["asks"] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in bids (list)
         _items = []
         if self.bids:
             for _item in self.bids:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['bids'] = _items
+            _dict["bids"] = _items
         return _dict
 
     @classmethod
@@ -98,11 +103,19 @@ class OrderBook(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "asks": [OrderBookEntry.from_dict(_item) for _item in obj["asks"]] if obj.get("asks") is not None else None,
-            "bids": [OrderBookEntry.from_dict(_item) for _item in obj["bids"]] if obj.get("bids") is not None else None,
-            "timestamp": obj.get("timestamp")
-        })
+        _obj = cls.model_validate(
+            {
+                "asks": (
+                    [OrderBookEntry.from_dict(_item) for _item in obj["asks"]]
+                    if obj.get("asks") is not None
+                    else None
+                ),
+                "bids": (
+                    [OrderBookEntry.from_dict(_item) for _item in obj["bids"]]
+                    if obj.get("bids") is not None
+                    else None
+                ),
+                "timestamp": obj.get("timestamp"),
+            }
+        )
         return _obj
-
-

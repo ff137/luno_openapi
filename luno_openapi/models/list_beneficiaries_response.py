@@ -28,7 +28,8 @@ from luno_openapi.models.beneficiary import Beneficiary
 class ListBeneficiariesResponse(BaseModel):
     """
     ListBeneficiariesResponse response object for list beneficiaries
-    """ # noqa: E501
+    """  # noqa: E501
+
     beneficiaries: Optional[List[Beneficiary]] = None
     __properties: ClassVar[List[str]] = ["beneficiaries"]
 
@@ -37,7 +38,6 @@ class ListBeneficiariesResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class ListBeneficiariesResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -77,7 +76,7 @@ class ListBeneficiariesResponse(BaseModel):
             for _item in self.beneficiaries:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['beneficiaries'] = _items
+            _dict["beneficiaries"] = _items
         return _dict
 
     @classmethod
@@ -89,9 +88,13 @@ class ListBeneficiariesResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "beneficiaries": [Beneficiary.from_dict(_item) for _item in obj["beneficiaries"]] if obj.get("beneficiaries") is not None else None
-        })
+        _obj = cls.model_validate(
+            {
+                "beneficiaries": (
+                    [Beneficiary.from_dict(_item) for _item in obj["beneficiaries"]]
+                    if obj.get("beneficiaries") is not None
+                    else None
+                )
+            }
+        )
         return _obj
-
-

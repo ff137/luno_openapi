@@ -26,19 +26,25 @@ from typing_extensions import Self
 class MoveResponse(BaseModel):
     """
     MoveResponse response
-    """ # noqa: E501
+    """  # noqa: E501
+
     id: Optional[StrictStr] = Field(default=None, description="Move unique identifier")
-    status: Optional[StrictStr] = Field(default=None, description="The current state of the move.  Status meaning:<br> <code>CREATED</code> The move is awaiting execution.<br> <code>MOVING</code> The funds have been reserved and the move is being executed.<br> <code>SUCCESSFUL</code> The move has completed successfully and should be reflected in both accounts available balance.<br> <code>FAILED</code> The move has failed. There could be many reasons for this but the most likely is that the debit account doesn't have enough available funds to move.<br>")
+    status: Optional[StrictStr] = Field(
+        default=None,
+        description="The current state of the move.  Status meaning:<br> <code>CREATED</code> The move is awaiting execution.<br> <code>MOVING</code> The funds have been reserved and the move is being executed.<br> <code>SUCCESSFUL</code> The move has completed successfully and should be reflected in both accounts available balance.<br> <code>FAILED</code> The move has failed. There could be many reasons for this but the most likely is that the debit account doesn't have enough available funds to move.<br>",
+    )
     __properties: ClassVar[List[str]] = ["id", "status"]
 
-    @field_validator('status')
+    @field_validator("status")
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['CREATED', 'MOVING', 'SUCCESSFUL', 'FAILED']):
-            raise ValueError("must be one of enum values ('CREATED', 'MOVING', 'SUCCESSFUL', 'FAILED')")
+        if value not in set(["CREATED", "MOVING", "SUCCESSFUL", "FAILED"]):
+            raise ValueError(
+                "must be one of enum values ('CREATED', 'MOVING', 'SUCCESSFUL', 'FAILED')"
+            )
         return value
 
     model_config = ConfigDict(
@@ -46,7 +52,6 @@ class MoveResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -72,8 +77,7 @@ class MoveResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -91,10 +95,5 @@ class MoveResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "status": obj.get("status")
-        })
+        _obj = cls.model_validate({"id": obj.get("id"), "status": obj.get("status")})
         return _obj
-
-

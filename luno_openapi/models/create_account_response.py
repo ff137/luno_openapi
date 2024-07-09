@@ -26,7 +26,8 @@ from typing_extensions import Self
 class CreateAccountResponse(BaseModel):
     """
     CreateAccountResponse
-    """ # noqa: E501
+    """  # noqa: E501
+
     currency: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
@@ -37,7 +38,6 @@ class CreateAccountResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -63,8 +63,7 @@ class CreateAccountResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -82,11 +81,11 @@ class CreateAccountResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "currency": obj.get("currency"),
-            "id": obj.get("id"),
-            "name": obj.get("name")
-        })
+        _obj = cls.model_validate(
+            {
+                "currency": obj.get("currency"),
+                "id": obj.get("id"),
+                "name": obj.get("name"),
+            }
+        )
         return _obj
-
-

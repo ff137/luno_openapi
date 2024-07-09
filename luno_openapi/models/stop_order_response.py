@@ -26,7 +26,8 @@ from typing_extensions import Self
 class StopOrderResponse(BaseModel):
     """
     StopOrderResponse
-    """ # noqa: E501
+    """  # noqa: E501
+
     success: Optional[StrictBool] = None
     __properties: ClassVar[List[str]] = ["success"]
 
@@ -35,7 +36,6 @@ class StopOrderResponse(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -61,8 +61,7 @@ class StopOrderResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
-        excluded_fields: Set[str] = set([
-        ])
+        excluded_fields: Set[str] = set([])
 
         _dict = self.model_dump(
             by_alias=True,
@@ -80,9 +79,5 @@ class StopOrderResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({
-            "success": obj.get("success")
-        })
+        _obj = cls.model_validate({"success": obj.get("success")})
         return _obj
-
-
