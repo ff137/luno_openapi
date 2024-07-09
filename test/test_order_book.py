@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.order_book import OrderBook
 
 
-class TestOrderBook(unittest.TestCase):
+class TestOrderBook(unittest.IsolatedAsyncioTestCase):
     """OrderBook unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

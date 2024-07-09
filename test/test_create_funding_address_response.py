@@ -19,10 +19,10 @@ from luno_openapi.models.create_funding_address_response import (
 )
 
 
-class TestCreateFundingAddressResponse(unittest.TestCase):
+class TestCreateFundingAddressResponse(unittest.IsolatedAsyncioTestCase):
     """CreateFundingAddressResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

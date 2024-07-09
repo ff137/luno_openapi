@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.api.market_api import MarketApi
 
 
-class TestMarketApi(unittest.TestCase):
+class TestMarketApi(unittest.IsolatedAsyncioTestCase):
     """MarketApi unit test stubs"""
 
-    def setUp(self) -> None:
+    async def asyncSetUp(self) -> None:
         self.api = MarketApi()
 
     def tearDown(self) -> None:

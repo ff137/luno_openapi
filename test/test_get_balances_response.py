@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.get_balances_response import GetBalancesResponse
 
 
-class TestGetBalancesResponse(unittest.TestCase):
+class TestGetBalancesResponse(unittest.IsolatedAsyncioTestCase):
     """GetBalancesResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.api.address_api import AddressApi
 
 
-class TestAddressApi(unittest.TestCase):
+class TestAddressApi(unittest.IsolatedAsyncioTestCase):
     """AddressApi unit test stubs"""
 
-    def setUp(self) -> None:
+    async def asyncSetUp(self) -> None:
         self.api = AddressApi()
 
     def tearDown(self) -> None:

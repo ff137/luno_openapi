@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.api.accounts_api import AccountsApi
 
 
-class TestAccountsApi(unittest.TestCase):
+class TestAccountsApi(unittest.IsolatedAsyncioTestCase):
     """AccountsApi unit test stubs"""
 
-    def setUp(self) -> None:
+    async def asyncSetUp(self):
         self.api = AccountsApi()
 
     def tearDown(self) -> None:

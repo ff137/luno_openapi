@@ -19,10 +19,10 @@ from luno_openapi.models.create_beneficiary_default_response import (
 )
 
 
-class TestCreateBeneficiaryDefaultResponse(unittest.TestCase):
+class TestCreateBeneficiaryDefaultResponse(unittest.IsolatedAsyncioTestCase):
     """CreateBeneficiaryDefaultResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

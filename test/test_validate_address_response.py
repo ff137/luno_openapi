@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.validate_address_response import ValidateAddressResponse
 
 
-class TestValidateAddressResponse(unittest.TestCase):
+class TestValidateAddressResponse(unittest.IsolatedAsyncioTestCase):
     """ValidateAddressResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

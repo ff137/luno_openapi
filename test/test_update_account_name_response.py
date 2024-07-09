@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.update_account_name_response import UpdateAccountNameResponse
 
 
-class TestUpdateAccountNameResponse(unittest.TestCase):
+class TestUpdateAccountNameResponse(unittest.IsolatedAsyncioTestCase):
     """UpdateAccountNameResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.api.receive_api import ReceiveApi
 
 
-class TestReceiveApi(unittest.TestCase):
+class TestReceiveApi(unittest.IsolatedAsyncioTestCase):
     """ReceiveApi unit test stubs"""
 
-    def setUp(self) -> None:
+    async def asyncSetUp(self) -> None:
         self.api = ReceiveApi()
 
     def tearDown(self) -> None:

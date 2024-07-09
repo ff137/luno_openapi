@@ -19,10 +19,10 @@ from luno_openapi.models.list_pending_transactions_response import (
 )
 
 
-class TestListPendingTransactionsResponse(unittest.TestCase):
+class TestListPendingTransactionsResponse(unittest.IsolatedAsyncioTestCase):
     """ListPendingTransactionsResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

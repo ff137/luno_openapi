@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.get_order_response import GetOrderResponse
 
 
-class TestGetOrderResponse(unittest.TestCase):
+class TestGetOrderResponse(unittest.IsolatedAsyncioTestCase):
     """GetOrderResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

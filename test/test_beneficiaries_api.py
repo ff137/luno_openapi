@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.api.beneficiaries_api import BeneficiariesApi
 
 
-class TestBeneficiariesApi(unittest.TestCase):
+class TestBeneficiariesApi(unittest.IsolatedAsyncioTestCase):
     """BeneficiariesApi unit test stubs"""
 
-    def setUp(self) -> None:
+    async def asyncSetUp(self) -> None:
         self.api = BeneficiariesApi()
 
     def tearDown(self) -> None:

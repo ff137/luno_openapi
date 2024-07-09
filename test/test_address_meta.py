@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.address_meta import AddressMeta
 
 
-class TestAddressMeta(unittest.TestCase):
+class TestAddressMeta(unittest.IsolatedAsyncioTestCase):
     """AddressMeta unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.transfer import Transfer
 
 
-class TestTransfer(unittest.TestCase):
+class TestTransfer(unittest.IsolatedAsyncioTestCase):
     """Transfer unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

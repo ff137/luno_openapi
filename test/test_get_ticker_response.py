@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.get_ticker_response import GetTickerResponse
 
 
-class TestGetTickerResponse(unittest.TestCase):
+class TestGetTickerResponse(unittest.IsolatedAsyncioTestCase):
     """GetTickerResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

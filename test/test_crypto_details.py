@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.crypto_details import CryptoDetails
 
 
-class TestCryptoDetails(unittest.TestCase):
+class TestCryptoDetails(unittest.IsolatedAsyncioTestCase):
     """CryptoDetails unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

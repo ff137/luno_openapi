@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.post_market_order_response import PostMarketOrderResponse
 
 
-class TestPostMarketOrderResponse(unittest.TestCase):
+class TestPostMarketOrderResponse(unittest.IsolatedAsyncioTestCase):
     """PostMarketOrderResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

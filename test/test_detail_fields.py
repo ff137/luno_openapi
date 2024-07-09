@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.detail_fields import DetailFields
 
 
-class TestDetailFields(unittest.TestCase):
+class TestDetailFields(unittest.IsolatedAsyncioTestCase):
     """DetailFields unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

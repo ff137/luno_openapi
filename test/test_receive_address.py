@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.receive_address import ReceiveAddress
 
 
-class TestReceiveAddress(unittest.TestCase):
+class TestReceiveAddress(unittest.IsolatedAsyncioTestCase):
     """ReceiveAddress unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

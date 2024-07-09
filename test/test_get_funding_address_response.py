@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.get_funding_address_response import GetFundingAddressResponse
 
 
-class TestGetFundingAddressResponse(unittest.TestCase):
+class TestGetFundingAddressResponse(unittest.IsolatedAsyncioTestCase):
     """GetFundingAddressResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

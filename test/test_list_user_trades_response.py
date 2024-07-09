@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.list_user_trades_response import ListUserTradesResponse
 
 
-class TestListUserTradesResponse(unittest.TestCase):
+class TestListUserTradesResponse(unittest.IsolatedAsyncioTestCase):
     """ListUserTradesResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

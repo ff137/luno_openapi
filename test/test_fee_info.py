@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.fee_info import FeeInfo
 
 
-class TestFeeInfo(unittest.TestCase):
+class TestFeeInfo(unittest.IsolatedAsyncioTestCase):
     """FeeInfo unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

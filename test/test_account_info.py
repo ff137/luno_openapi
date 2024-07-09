@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.account_info import AccountInfo
 
 
-class TestAccountInfo(unittest.TestCase):
+class TestAccountInfo(unittest.IsolatedAsyncioTestCase):
     """AccountInfo unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

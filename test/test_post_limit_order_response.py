@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.post_limit_order_response import PostLimitOrderResponse
 
 
-class TestPostLimitOrderResponse(unittest.TestCase):
+class TestPostLimitOrderResponse(unittest.IsolatedAsyncioTestCase):
     """PostLimitOrderResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

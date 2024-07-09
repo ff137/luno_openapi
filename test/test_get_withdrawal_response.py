@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.get_withdrawal_response import GetWithdrawalResponse
 
 
-class TestGetWithdrawalResponse(unittest.TestCase):
+class TestGetWithdrawalResponse(unittest.IsolatedAsyncioTestCase):
     """GetWithdrawalResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

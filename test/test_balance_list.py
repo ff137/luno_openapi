@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.balance_list import BalanceList
 
 
-class TestBalanceList(unittest.TestCase):
+class TestBalanceList(unittest.IsolatedAsyncioTestCase):
     """BalanceList unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

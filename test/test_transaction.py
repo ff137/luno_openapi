@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.transaction import Transaction
 
 
-class TestTransaction(unittest.TestCase):
+class TestTransaction(unittest.IsolatedAsyncioTestCase):
     """Transaction unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

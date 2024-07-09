@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.get_candles_response import GetCandlesResponse
 
 
-class TestGetCandlesResponse(unittest.TestCase):
+class TestGetCandlesResponse(unittest.IsolatedAsyncioTestCase):
     """GetCandlesResponse unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):

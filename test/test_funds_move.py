@@ -17,10 +17,10 @@ import unittest
 from luno_openapi.models.funds_move import FundsMove
 
 
-class TestFundsMove(unittest.TestCase):
+class TestFundsMove(unittest.IsolatedAsyncioTestCase):
     """FundsMove unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         pass
 
     def tearDown(self):
