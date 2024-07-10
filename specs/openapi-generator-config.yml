@@ -1,0 +1,7 @@
+generatorName: python
+outputDir: ./
+inputSpec: ./specs/luno_openapi.json
+additionalProperties:
+  library: asyncio
+  packageName: luno_openapi
+  packageVersion: 1.2.3
