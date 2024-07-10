@@ -1,7 +1,13 @@
 {
     "cSpell.words": [
+        "asyncio",
+        "bsatvv",
         "cafile",
         "dateutil",
+        "Djacoco",
+        "Dmaven",
+        "Dskip",
+        "Duser",
         "ETHZAR",
         "forex",
         "klass",
@@ -17,6 +23,7 @@
         "resp",
         "Ringgit",
         "stoporder",
+        "timezone",
         "txid",
         "Tyme",
         "XBTZAR"
