@@ -22,7 +22,7 @@ from setuptools import find_packages, setup  # noqa: H301
 # http://pypi.python.org/pypi/setuptools
 NAME = "luno-openapi"
 VERSION = "1.2.3"
-PYTHON_REQUIRES = ">=3.7"
+PYTHON_REQUIRES = ">=3.8"
 REQUIRES = [
     "urllib3 >= 1.25.3, < 2.1.0",
     "python-dateutil",
