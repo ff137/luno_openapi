@@ -21,9 +21,19 @@ from typing import Optional, Union
 import aiohttp
 import aiohttp_retry
 
+from luno_openapi.configuration import Configuration
 from luno_openapi.exceptions import ApiException, ApiValueError
 
 RESTResponseType = aiohttp.ClientResponse
+
+default_configuration = Configuration()
+default_ssl_context = ssl.create_default_context(
+    cafile=default_configuration.ssl_ca_cert
+)
+if default_configuration.cert_file:
+    default_ssl_context.load_cert_chain(
+        default_configuration.cert_file, keyfile=default_configuration.key_file
+    )
 
 ALLOW_RETRY_METHODS = frozenset({"DELETE", "GET", "HEAD", "OPTIONS", "PUT", "TRACE"})
 
@@ -57,7 +67,7 @@ class RESTClientObject:
         # maxsize is number of requests to host that are allowed in parallel
         maxsize = configuration.connection_pool_maxsize
 
-        ssl_context = ssl.create_default_context(cafile=configuration.ssl_ca_cert)
+        ssl_context = default_ssl_context
         if configuration.cert_file:
             ssl_context.load_cert_chain(
                 configuration.cert_file, keyfile=configuration.key_file
