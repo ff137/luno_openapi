@@ -32,7 +32,7 @@ class Candle(BaseModel):
     high: Optional[StrictStr] = Field(default=None, description="High price")
     low: Optional[StrictStr] = Field(default=None, description="Low price")
     open: Optional[StrictStr] = Field(default=None, description="Opening price")
-    timestamp: Optional[StrictStr] = Field(
+    timestamp: Optional[int] = Field(
         default=None, description="Unix timestamp in milliseconds"
     )
     volume: Optional[StrictStr] = Field(default=None, description="Volume traded")

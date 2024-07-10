@@ -38,7 +38,7 @@ class PublicTrade(BaseModel):
         default=None,
         description="The ever incrementing trade identifier within a market",
     )
-    timestamp: Optional[StrictStr] = Field(
+    timestamp: Optional[int] = Field(
         default=None, description="Unix timestamp in milliseconds"
     )
     volume: Optional[StrictStr] = Field(
