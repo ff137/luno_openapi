@@ -2,14 +2,12 @@
 
 The Luno API provides developers with a wealth of financial information provided through the Luno platform. Through this secure system developers can:
 
-<ul>
-   <li>Create accounts for trading in cryptocurrencies</li>
-   <li>Access current and historic cryptocurrency market data</li>
-   <li>Submit trade orders and view order status</li>
-   <li>Buy and sell Bitcoin and Ethereum</li>
-   <li>Send and receive Bitcoin and Ethereum</li>
-   <li>Generate Bitcoin and Ethereum wallet addresses</li>
- </ul>
+- Create accounts for trading in cryptocurrencies
+- Access current and historic cryptocurrency market data
+- Submit trade orders and view order status
+- Buy and sell Bitcoin and Ethereum
+- Send and receive Bitcoin and Ethereum
+- Generate Bitcoin and Ethereum wallet addresses
 
 The Luno API brings the world of Bitcoin and Ethereum to your doorstep.
 
@@ -99,48 +97,48 @@ async with luno_openapi.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *<https://api.luno.com>*
+All URIs are relative to _<https://api.luno.com>_
 
 | Class              | Method                                                                         | HTTP request                              | Description                         |
 | ------------------ | ------------------------------------------------------------------------------ | ----------------------------------------- | ----------------------------------- |
-| *AccountsApi*      | [**create_account**](docs/AccountsApi.md#create_account)                       | **POST** /api/1/accounts                  | Create account                      |
-| *AccountsApi*      | [**get_balances**](docs/AccountsApi.md#get_balances)                           | **GET** /api/1/balance                    | List account balances               |
-| *AccountsApi*      | [**get_move**](docs/AccountsApi.md#get_move)                                   | **GET** /api/exchange/1/move              | Move                                |
-| *AccountsApi*      | [**list_moves**](docs/AccountsApi.md#list_moves)                               | **GET** /api/exchange/1/move/list_moves   | List Moves                          |
-| *AccountsApi*      | [**list_pending_transactions**](docs/AccountsApi.md#list_pending_transactions) | **GET** /api/1/accounts/{id}/pending      | List pending transactions           |
-| *AccountsApi*      | [**list_transactions**](docs/AccountsApi.md#list_transactions)                 | **GET** /api/1/accounts/{id}/transactions | List transactions                   |
-| *AccountsApi*      | [**move**](docs/AccountsApi.md#move)                                           | **POST** /api/exchange/1/move             | Move                                |
-| *AccountsApi*      | [**update_account_name**](docs/AccountsApi.md#update_account_name)             | **PUT** /api/1/accounts/{id}/name         | Update Account Name                 |
-| *AddressApi*       | [**validate**](docs/AddressApi.md#validate)                                    | **POST** /api/1/address/validate          | Validate                            |
-| *BeneficiariesApi* | [**create_beneficiary**](docs/BeneficiariesApi.md#create_beneficiary)          | **POST** /api/1/beneficiaries             | Create beneficiary                  |
-| *BeneficiariesApi* | [**delete_beneficiary**](docs/BeneficiariesApi.md#delete_beneficiary)          | **DELETE** /api/1/beneficiaries/{id}      | Delete beneficiary                  |
-| *BeneficiariesApi* | [**list_beneficiaries**](docs/BeneficiariesApi.md#list_beneficiaries)          | **GET** /api/1/beneficiaries              | List beneficiaries                  |
-| *MarketApi*        | [**get_candles**](docs/MarketApi.md#get_candles)                               | **GET** /api/exchange/1/candles           | Get candles                         |
-| *MarketApi*        | [**get_order_book**](docs/MarketApi.md#get_order_book)                         | **GET** /api/1/orderbook_top              | Get top order book                  |
-| *MarketApi*        | [**get_order_book_full**](docs/MarketApi.md#get_order_book_full)               | **GET** /api/1/orderbook                  | Get full order book                 |
-| *MarketApi*        | [**get_ticker**](docs/MarketApi.md#get_ticker)                                 | **GET** /api/1/ticker                     | Get ticker for currency pair        |
-| *MarketApi*        | [**get_tickers**](docs/MarketApi.md#get_tickers)                               | **GET** /api/1/tickers                    | List tickers for all currency pairs |
-| *MarketApi*        | [**list_trades**](docs/MarketApi.md#list_trades)                               | **GET** /api/1/trades                     | List recent trades                  |
-| *MarketApi*        | [**markets**](docs/MarketApi.md#markets)                                       | **GET** /api/exchange/1/markets           | Get markets info                    |
-| *OrdersApi*        | [**get_fee_info**](docs/OrdersApi.md#get_fee_info)                             | **GET** /api/1/fee_info                   | Get fee information                 |
-| *OrdersApi*        | [**get_order**](docs/OrdersApi.md#get_order)                                   | **GET** /api/1/orders/{id}                | Get order                           |
-| *OrdersApi*        | [**get_order_v2**](docs/OrdersApi.md#get_order_v2)                             | **GET** /api/exchange/2/orders/{id}       | Get Order v2                        |
-| *OrdersApi*        | [**get_order_v3**](docs/OrdersApi.md#get_order_v3)                             | **GET** /api/exchange/3/order             | Get Order v3                        |
-| *OrdersApi*        | [**list_orders**](docs/OrdersApi.md#list_orders)                               | **GET** /api/1/listorders                 | List orders                         |
-| *OrdersApi*        | [**list_orders_v2**](docs/OrdersApi.md#list_orders_v2)                         | **GET** /api/exchange/2/listorders        | List Orders v2                      |
-| *OrdersApi*        | [**list_user_trades**](docs/OrdersApi.md#list_user_trades)                     | **GET** /api/1/listtrades                 | List trades                         |
-| *OrdersApi*        | [**post_limit_order**](docs/OrdersApi.md#post_limit_order)                     | **POST** /api/1/postorder                 | Post Limit Order                    |
-| *OrdersApi*        | [**post_market_order**](docs/OrdersApi.md#post_market_order)                   | **POST** /api/1/marketorder               | Post Market Order                   |
-| *OrdersApi*        | [**stop_order**](docs/OrdersApi.md#stop_order)                                 | **POST** /api/1/stoporder                 | Cancel Order                        |
-| *ReceiveApi*       | [**create_funding_address**](docs/ReceiveApi.md#create_funding_address)        | **POST** /api/1/funding_address           | Create receive address              |
-| *ReceiveApi*       | [**get_funding_address**](docs/ReceiveApi.md#get_funding_address)              | **GET** /api/1/funding_address            | Get receive address                 |
-| *SendApi*          | [**send**](docs/SendApi.md#send)                                               | **POST** /api/1/send                      | Send                                |
-| *SendApi*          | [**send_fee**](docs/SendApi.md#send_fee)                                       | **GET** /api/1/send_fee                   | Estimate send fees                  |
-| *TransfersApi*     | [**cancel_withdrawal**](docs/TransfersApi.md#cancel_withdrawal)                | **DELETE** /api/1/withdrawals/{id}        | Cancel withdrawal request           |
-| *TransfersApi*     | [**create_withdrawal**](docs/TransfersApi.md#create_withdrawal)                | **POST** /api/1/withdrawals               | Request a withdrawal                |
-| *TransfersApi*     | [**get_withdrawal**](docs/TransfersApi.md#get_withdrawal)                      | **GET** /api/1/withdrawals/{id}           | Get withdrawal request              |
-| *TransfersApi*     | [**list_transfers**](docs/TransfersApi.md#list_transfers)                      | **GET** /api/exchange/1/transfers         | List transfers                      |
-| *TransfersApi*     | [**list_withdrawals**](docs/TransfersApi.md#list_withdrawals)                  | **GET** /api/1/withdrawals                | List withdrawal requests            |
+| _AccountsApi_      | [**create_account**](docs/AccountsApi.md#create_account)                       | **POST** /api/1/accounts                  | Create account                      |
+| _AccountsApi_      | [**get_balances**](docs/AccountsApi.md#get_balances)                           | **GET** /api/1/balance                    | List account balances               |
+| _AccountsApi_      | [**get_move**](docs/AccountsApi.md#get_move)                                   | **GET** /api/exchange/1/move              | Move                                |
+| _AccountsApi_      | [**list_moves**](docs/AccountsApi.md#list_moves)                               | **GET** /api/exchange/1/move/list_moves   | List Moves                          |
+| _AccountsApi_      | [**list_pending_transactions**](docs/AccountsApi.md#list_pending_transactions) | **GET** /api/1/accounts/{id}/pending      | List pending transactions           |
+| _AccountsApi_      | [**list_transactions**](docs/AccountsApi.md#list_transactions)                 | **GET** /api/1/accounts/{id}/transactions | List transactions                   |
+| _AccountsApi_      | [**move**](docs/AccountsApi.md#move)                                           | **POST** /api/exchange/1/move             | Move                                |
+| _AccountsApi_      | [**update_account_name**](docs/AccountsApi.md#update_account_name)             | **PUT** /api/1/accounts/{id}/name         | Update Account Name                 |
+| _AddressApi_       | [**validate**](docs/AddressApi.md#validate)                                    | **POST** /api/1/address/validate          | Validate                            |
+| _BeneficiariesApi_ | [**create_beneficiary**](docs/BeneficiariesApi.md#create_beneficiary)          | **POST** /api/1/beneficiaries             | Create beneficiary                  |
+| _BeneficiariesApi_ | [**delete_beneficiary**](docs/BeneficiariesApi.md#delete_beneficiary)          | **DELETE** /api/1/beneficiaries/{id}      | Delete beneficiary                  |
+| _BeneficiariesApi_ | [**list_beneficiaries**](docs/BeneficiariesApi.md#list_beneficiaries)          | **GET** /api/1/beneficiaries              | List beneficiaries                  |
+| _MarketApi_        | [**get_candles**](docs/MarketApi.md#get_candles)                               | **GET** /api/exchange/1/candles           | Get candles                         |
+| _MarketApi_        | [**get_order_book**](docs/MarketApi.md#get_order_book)                         | **GET** /api/1/orderbook_top              | Get top order book                  |
+| _MarketApi_        | [**get_order_book_full**](docs/MarketApi.md#get_order_book_full)               | **GET** /api/1/orderbook                  | Get full order book                 |
+| _MarketApi_        | [**get_ticker**](docs/MarketApi.md#get_ticker)                                 | **GET** /api/1/ticker                     | Get ticker for currency pair        |
+| _MarketApi_        | [**get_tickers**](docs/MarketApi.md#get_tickers)                               | **GET** /api/1/tickers                    | List tickers for all currency pairs |
+| _MarketApi_        | [**list_trades**](docs/MarketApi.md#list_trades)                               | **GET** /api/1/trades                     | List recent trades                  |
+| _MarketApi_        | [**markets**](docs/MarketApi.md#markets)                                       | **GET** /api/exchange/1/markets           | Get markets info                    |
+| _OrdersApi_        | [**get_fee_info**](docs/OrdersApi.md#get_fee_info)                             | **GET** /api/1/fee_info                   | Get fee information                 |
+| _OrdersApi_        | [**get_order**](docs/OrdersApi.md#get_order)                                   | **GET** /api/1/orders/{id}                | Get order                           |
+| _OrdersApi_        | [**get_order_v2**](docs/OrdersApi.md#get_order_v2)                             | **GET** /api/exchange/2/orders/{id}       | Get Order v2                        |
+| _OrdersApi_        | [**get_order_v3**](docs/OrdersApi.md#get_order_v3)                             | **GET** /api/exchange/3/order             | Get Order v3                        |
+| _OrdersApi_        | [**list_orders**](docs/OrdersApi.md#list_orders)                               | **GET** /api/1/listorders                 | List orders                         |
+| _OrdersApi_        | [**list_orders_v2**](docs/OrdersApi.md#list_orders_v2)                         | **GET** /api/exchange/2/listorders        | List Orders v2                      |
+| _OrdersApi_        | [**list_user_trades**](docs/OrdersApi.md#list_user_trades)                     | **GET** /api/1/listtrades                 | List trades                         |
+| _OrdersApi_        | [**post_limit_order**](docs/OrdersApi.md#post_limit_order)                     | **POST** /api/1/postorder                 | Post Limit Order                    |
+| _OrdersApi_        | [**post_market_order**](docs/OrdersApi.md#post_market_order)                   | **POST** /api/1/marketorder               | Post Market Order                   |
+| _OrdersApi_        | [**stop_order**](docs/OrdersApi.md#stop_order)                                 | **POST** /api/1/stoporder                 | Cancel Order                        |
+| _ReceiveApi_       | [**create_funding_address**](docs/ReceiveApi.md#create_funding_address)        | **POST** /api/1/funding_address           | Create receive address              |
+| _ReceiveApi_       | [**get_funding_address**](docs/ReceiveApi.md#get_funding_address)              | **GET** /api/1/funding_address            | Get receive address                 |
+| _SendApi_          | [**send**](docs/SendApi.md#send)                                               | **POST** /api/1/send                      | Send                                |
+| _SendApi_          | [**send_fee**](docs/SendApi.md#send_fee)                                       | **GET** /api/1/send_fee                   | Estimate send fees                  |
+| _TransfersApi_     | [**cancel_withdrawal**](docs/TransfersApi.md#cancel_withdrawal)                | **DELETE** /api/1/withdrawals/{id}        | Cancel withdrawal request           |
+| _TransfersApi_     | [**create_withdrawal**](docs/TransfersApi.md#create_withdrawal)                | **POST** /api/1/withdrawals               | Request a withdrawal                |
+| _TransfersApi_     | [**get_withdrawal**](docs/TransfersApi.md#get_withdrawal)                      | **GET** /api/1/withdrawals/{id}           | Get withdrawal request              |
+| _TransfersApi_     | [**list_transfers**](docs/TransfersApi.md#list_transfers)                      | **GET** /api/exchange/1/transfers         | List transfers                      |
+| _TransfersApi_     | [**list_withdrawals**](docs/TransfersApi.md#list_withdrawals)                  | **GET** /api/1/withdrawals                | List withdrawal requests            |
 
 ## Documentation For Models
 
@@ -203,11 +201,3 @@ All URIs are relative to *<https://api.luno.com>*
 - [UpdateAccountNameResponse](docs/UpdateAccountNameResponse.md)
 - [ValidateAddressResponse](docs/ValidateAddressResponse.md)
 - [Withdrawal](docs/Withdrawal.md)
-
-<a id="documentation-for-authorization"></a>
-
-## Documentation For Authorization
-
-Endpoints do not require authorization.
-
-## Author

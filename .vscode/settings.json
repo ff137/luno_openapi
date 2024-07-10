@@ -1,11 +1,24 @@
 {
     "cSpell.words": [
+        "cafile",
+        "dateutil",
         "ETHZAR",
+        "forex",
+        "klass",
+        "levelname",
         "listorders",
         "listtrades",
         "marketorder",
+        "Postbank",
+        "POSTONLY",
         "postorder",
+        "pyproject",
+        "pyversion",
+        "resp",
+        "Ringgit",
         "stoporder",
+        "txid",
+        "Tyme",
         "XBTZAR"
     ]
 }
