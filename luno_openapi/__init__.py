@@ -16,6 +16,8 @@
 
 __version__ = "1.2.3"
 
+from luno_openapi.luno_client import LunoClient
+
 # import apis into sdk package
 from luno_openapi.api.accounts_api import AccountsApi
 from luno_openapi.api.address_api import AddressApi
