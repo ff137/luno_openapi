@@ -662,6 +662,17 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "example": 12345,
+            "x-go-name": "AccountID",
+            "description": "An optional account_id to assign the new Receive Address too",
+            "name": "account_id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
           }
         ],
         "responses": {
@@ -772,24 +783,22 @@
             }
           },
           {
-            "example": "1470810728478",
             "x-go-name": "Since",
             "description": "Filter to trades on or after this timestamp (Unix milliseconds).",
             "name": "since",
             "in": "query",
             "schema": {
-              "type": "string",
+              "type": "integer",
               "format": "timestamp"
             }
           },
           {
-            "example": "1470810728478",
             "x-go-name": "Before",
             "description": "Filter to trades before this timestamp (Unix milliseconds).",
             "name": "before",
             "in": "query",
             "schema": {
-              "type": "string",
+              "type": "integer",
               "format": "timestamp"
             }
           },
@@ -1628,13 +1637,12 @@
             }
           },
           {
-            "example": "1520438111000",
             "x-go-name": "Since",
             "description": "Fetch trades executed after this time, specified as a Unix timestamp in\nmilliseconds. An error will be returned if this is before 24h ago. Use\nthis parameter to either restrict to a shorter window or to iterate over\nthe trades in case you need more than the 100 most recent trades.",
             "name": "since",
             "in": "query",
             "schema": {
-              "type": "string",
+              "type": "integer",
               "format": "timestamp"
             }
           }
@@ -1882,14 +1890,13 @@
             }
           },
           {
-            "example": "1470810728478",
             "x-go-name": "Since",
             "description": "Filter to candles starting on or after this timestamp (Unix milliseconds).\nOnly up to 1000 of the earliest candles are returned.",
             "name": "since",
             "in": "query",
             "required": true,
             "schema": {
-              "type": "string",
+              "type": "integer",
               "format": "timestamp"
             }
           },
@@ -2420,11 +2427,11 @@
       "name": "Streaming API"
     },
     {
-      "description": "This section describes the error codes in more detail.\n<ul>\n<li><code>ErrAccountLimit</code> You can't add another wallet with this currency</li>\n<li><code>ErrAccountNotFound</code> Cannot find that account</li>\n<li><code>ErrAccountsNotDifferent</code> Debit and credit accounts must be different</li>\n<li><code>ErrActiveCryptoRequestExists</code> Send request pending. Please try again after it has completed.</li>\n<li><code>ErrAmountTooBig</code> The specified amount is higher than the maximum allowed.</li>\n<li><code>ErrAmountTooSmall</code> The specified amount is lower than the minimum allowed.</li>\n<li><code>ErrApiKeyRevoked</code> Your API key has been revoked.</li>\n<li><code>ErrBeneficiaryNotFound</code> Beneficiary not Found</li>\n<li><code>ErrBlockedSendsCurrency</code> Sends are currently disabled for this currency</li>\n<li><code>ErrCannotStopUnknownOrNonPendingOrder</code> Cannot stop unknown or non-pending order.</li>\n<li><code>ErrCannotTradeWhileQuoteActive</code> Cannot trade while you have any active quotes.</li>\n<li><code>ErrCounterDenominationNotAllowed</code> Amount contains too many decimal places</li>\n<li><code>ErrCreditAccountNotTransactional</code> The specified credit-account must be transactional</li>\n<li><code>ErrCustomRefNotAllowed</code> Custom reference not allowed</li>\n<li><code>ErrDeadlineExceeded</code> Could not complete before the deadline</li>\n<li><code>ErrDebitAccountNotTransactional</code> Debit account not transactional</li>\n<li><code>ErrDescriptionTooLong</code> Your transaction reference is too long. The maximum length is 256 characters.</li>\n<li><code>ErrDifferentCurrencies</code> Debit and credit accounts have different currencies</li>\n<li><code>ErrDisallowedTarget</code> Given address not allowed.</li>\n<li><code>ErrDuplicateClientMoveID</code> Duplicate client move id</li>\n<li><code>ErrDuplicateClientOrderID</code> Duplicate client order id</li>\n<li><code>ErrDuplicateExternalID</code> A withdrawal with an identical external id already exists.</li>\n<li><code>ErrERC20AddressAlreadyAssigned</code> You can only create 1 ERC-20 receive address per token</li>\n<li><code>ErrIncompatibleBeneficiary</code> Beneficiary is incompatible with the requested withdrawal.</li>\n<li><code>ErrIncorrectPin</code> Invalid pin specified</li>\n<li><code>ErrInsufficientBalance</code> Insufficient balance.</li>\n<li><code>ErrInsufficientFunds</code> Account has insufficient funds</li>\n<li><code>ErrInternal</code> Something went wrong. We're looking into it.</li>\n<li><code>ErrInvalidAccount</code> Account is invalid</li>\n<li><code>ErrInvalidAccountID</code> Invalid account ID specified</li>\n<li><code>ErrInvalidAmount</code> Invalid amount specified</li>\n<li><code>ErrInvalidArguments</code> If any request parameters have invalid values this error will be returned. This error should also include a list of the offending fields to help identify and fix any issues.</li>\n<li><code>ErrInvalidBaseVolume</code> Invalid base volume for sell order.</li>\n<li><code>ErrInvalidClientOrderId</code> Invalid client order id</li>\n<li><code>ErrInvalidCounterVolume</code> Invalid counter volume for buy order.</li>\n<li><code>ErrInvalidCurrency</code> Invalid currency specified</li>\n<li><code>ErrInvalidDetails</code> Bank account details invalid</li>\n<li><code>ErrInvalidMarketPair</code> Market pair is invalid</li>\n<li><code>ErrInvalidOrderRef</code> Order reference is invalid</li>\n<li><code>ErrInvalidOrderSide</code> Order side is invalid</li>\n<li><code>ErrInvalidParameters</code> Invalid parameters</li>\n<li><code>ErrInvalidPrice</code> Invalid order price.</li>\n<li><code>ErrInvalidRequestType</code> Invalid withdrawal request type specified.</li>\n<li><code>ErrInvalidStopDirection</code> Stop direction is invalid.</li>\n<li><code>ErrInvalidStopPrice</code> Invalid order stop price.</li>\n<li><code>ErrInvalidVolume</code> Invalid order volume.</li>\n<li><code>ErrLimitOutOfRange</code> List limit is out of allowed range</li>\n<li><code>ErrMarketNotAllowed</code> This market is not enabled for you.</li>\n<li><code>ErrMarketUnavailable</code> Market not available</li>\n<li><code>ErrMaxActiveFiatRequestsExists</code> Too many withdrawals in progress. Cancel one or try again later.</li>\n<li><code>ErrNoTradesToInferStopDirection</code> Could not place Stop Limit Order, no trades to determine direction</li>\n<li><code>ErrNotEnoughLiquidity</code> Market order price would vary too much from the market rate - use a limit order instead</li>\n<li><code>ErrOrderCanceled</code> Your post-only order was cancelled before trading</li>\n<li><code>ErrOrderNotFound</code> Cannot find that order</li>\n<li><code>ErrPostOnlyMode</code> Market is in post-only mode</li>\n<li><code>ErrPostOnlyNotAllowed</code> IOC and FOK time-in-force types are not supported as post-only orders</li>\n<li><code>ErrPriceDenominationNotAllowed</code> Price contains too many decimal places</li>\n<li><code>ErrPriceTooHigh</code> Price is above the maximum</li>\n<li><code>ErrPriceTooLow</code> Price is below the minimum</li>\n<li><code>ErrRejectedBeneficiary</code> Cannot request withdrawal to rejected beneficiary.</li>\n<li><code>ErrRequestTypeDoesNotSupportFastWithdrawals</code> The specified request type does not support fast withdrawals.</li>\n<li><code>ErrStopPriceTooHigh</code> Stop price is too high.</li>\n<li><code>ErrStopPriceTooLow</code> Stop price is too low.</li>\n<li><code>ErrTooManyRequests</code> You are exceeding the allowed request rate limit</li>\n<li><code>ErrTooManyRowsRequested</code> Too many rows requested</li>\n<li><code>ErrTravelRule</code> Please ensure that you've initiated a once-off crypto send for this specific wallet address via the website or mobile app and included relevant Travel Rule information before trying again via the send API. <a href=\"/help/articles/421340781836897\" target=\"_blank\">Click here</a> for more information on the Travel Rule.</li>\n<li><code>ErrUnauthorised</code> You are not authorised to access this route</li>\n<li><code>ErrUnderMaintenance</code> The market is currently undergoing maintenance</li>\n<li><code>ErrUpdateRequired</code> Luno app update required</li>\n<li><code>ErrUserBlockedForCancelWithdrawal</code> User blocked from cancelling withdrawals</li>\n<li><code>ErrUserNotVerifiedForCurrency</code> You are not verified for this currency</li>\n<li><code>ErrVolumeDenominationNotAllowed</code> Volume contains too many decimal places</li>\n<li><code>ErrVolumeTooHigh</code> Volume is above the maximum</li>\n<li><code>ErrVolumeTooLow</code> Volume is below the minimum</li>\n<li><code>ErrWithdrawalBlocked</code> To increase your withdraw limit add more information to your profile in settings.</li>\n<li><code>ErrWithdrawalNotFound</code> Cannot find that withdrawal</li></ul>",
+      "description": "This section describes the error codes in more detail.\n<ul>\n<li><code>ErrAccountLimit</code> You can't add another wallet with this currency</li>\n<li><code>ErrAccountNotFound</code> Cannot find that account</li>\n<li><code>ErrAccountsNotDifferent</code> Debit and credit accounts must be different</li>\n<li><code>ErrActiveCryptoRequestExists</code> Send request pending. Please try again after it has completed.</li>\n<li><code>ErrAmountTooBig</code> The specified amount is higher than the maximum allowed.</li>\n<li><code>ErrAmountTooSmall</code> The specified amount is lower than the minimum allowed.</li>\n<li><code>ErrApiKeyRevoked</code> Your API key has been revoked.</li>\n<li><code>ErrBeneficiaryNotFound</code> Beneficiary not Found</li>\n<li><code>ErrBlockedSendsCurrency</code> Sends are currently disabled for this currency</li>\n<li><code>ErrCannotStopUnknownOrNonPendingOrder</code> Cannot stop unknown or non-pending order.</li>\n<li><code>ErrCannotTradeWhileQuoteActive</code> Cannot trade while you have any active quotes.</li>\n<li><code>ErrCounterDenominationNotAllowed</code> Amount contains too many decimal places</li>\n<li><code>ErrCreditAccountNotTransactional</code> The specified credit-account must be transactional</li>\n<li><code>ErrCustomRefNotAllowed</code> Custom reference not allowed</li>\n<li><code>ErrDeadlineExceeded</code> Could not complete before the deadline</li>\n<li><code>ErrDebitAccountNotTransactional</code> Debit account not transactional</li>\n<li><code>ErrDescriptionTooLong</code> Your transaction reference is too long. The maximum length is 256 characters.</li>\n<li><code>ErrDifferentCurrencies</code> Debit and credit accounts have different currencies</li>\n<li><code>ErrDisallowedTarget</code> Given address not allowed.</li>\n<li><code>ErrDuplicateClientMoveID</code> Duplicate client move id</li>\n<li><code>ErrDuplicateClientOrderID</code> Duplicate client order id</li>\n<li><code>ErrDuplicateExternalID</code> A withdrawal with an identical external id already exists.</li>\n<li><code>ErrERC20AddressAlreadyAssigned</code> You can only create 1 ERC-20 receive address per token</li>\n<li><code>ErrIncompatibleBeneficiary</code> Beneficiary is incompatible with the requested withdrawal.</li>\n<li><code>ErrIncorrectPin</code> Invalid pin specified</li>\n<li><code>ErrInsufficientBalance</code> Insufficient balance.</li>\n<li><code>ErrInsufficientFunds</code> Account has insufficient funds</li>\n<li><code>ErrInternal</code> Something went wrong. We're looking into it.</li>\n<li><code>ErrInvalidAccount</code> Account is invalid</li>\n<li><code>ErrInvalidAccountID</code> Invalid account ID specified</li>\n<li><code>ErrInvalidAmount</code> Invalid amount specified</li>\n<li><code>ErrInvalidArguments</code> If any request parameters have invalid values this error will be returned. This error should also include a list of the offending fields to help identify and fix any issues.</li>\n<li><code>ErrInvalidBaseVolume</code> Invalid base volume for sell order.</li>\n<li><code>ErrInvalidClientOrderId</code> Invalid client order id</li>\n<li><code>ErrInvalidCounterVolume</code> Invalid counter volume for buy order.</li>\n<li><code>ErrInvalidCurrency</code> Invalid currency specified</li>\n<li><code>ErrInvalidDetails</code> Bank account details invalid</li>\n<li><code>ErrInvalidMarketPair</code> Market pair is invalid</li>\n<li><code>ErrInvalidOrderRef</code> Order reference is invalid</li>\n<li><code>ErrInvalidOrderSide</code> Order side is invalid</li>\n<li><code>ErrInvalidParameters</code> Invalid parameters</li>\n<li><code>ErrInvalidPrice</code> Invalid order price.</li>\n<li><code>ErrInvalidRequestType</code> Invalid withdrawal request type specified.</li>\n<li><code>ErrInvalidStopDirection</code> Stop direction is invalid.</li>\n<li><code>ErrInvalidStopPrice</code> Invalid order stop price.</li>\n<li><code>ErrInvalidVolume</code> Invalid order volume.</li>\n<li><code>ErrLimitOutOfRange</code> List limit is out of allowed range</li>\n<li><code>ErrMarketNotAllowed</code> This market is not enabled for you.</li>\n<li><code>ErrMarketUnavailable</code> Market not available</li>\n<li><code>ErrMaxActiveFiatRequestsExists</code> Too many withdrawals in progress. Cancel one or try again later.</li>\n<li><code>ErrNoTradesToInferStopDirection</code> Could not place Stop Limit Order, no trades to determine direction</li>\n<li><code>ErrNotEnoughLiquidity</code> Market order price would vary too much from the market rate - use a limit order instead</li>\n<li><code>ErrOrderCanceled</code> Your post-only order was cancelled before trading</li>\n<li><code>ErrOrderNotFound</code> Cannot find that order</li>\n<li><code>ErrPostOnlyMode</code> Market is in post-only mode</li>\n<li><code>ErrPostOnlyNotAllowed</code> IOC and FOK time-in-force types are not supported as post-only orders</li>\n<li><code>ErrPriceDenominationNotAllowed</code> Price contains too many decimal places</li>\n<li><code>ErrPriceTooHigh</code> Price is above the maximum</li>\n<li><code>ErrPriceTooLow</code> Price is below the minimum</li>\n<li><code>ErrRejectedBeneficiary</code> Cannot request withdrawal to rejected beneficiary.</li>\n<li><code>ErrRequestTypeDoesNotSupportFastWithdrawals</code> The specified request type does not support fast withdrawals.</li>\n<li><code>ErrStopPriceTooHigh</code> Stop price is too high.</li>\n<li><code>ErrStopPriceTooLow</code> Stop price is too low.</li>\n<li><code>ErrTooManyRequests</code> You are exceeding the allowed request rate limit</li>\n<li><code>ErrTooManyRowsRequested</code> Too many rows requested</li>\n<li><code>ErrTravelRule</code> Please ensure that you've initiated a once-off crypto send for this specific wallet address via the website or mobile app and included relevant Travel Rule information before trying again via the send API. <a href=\"/help/articles/421340781836897\" target=\"_blank\">Click here</a> for more information on the Travel Rule.</li>\n<li><code>ErrUnauthorised</code> You are not authorised to access this route</li>\n<li><code>ErrUnderMaintenance</code> The market is currently undergoing maintenance</li>\n<li><code>ErrUpdateRequired</code> Luno app update required</li>\n<li><code>ErrUserBlockedForCancelWithdrawal</code> User blocked from cancelling withdrawals</li>\n<li><code>ErrUserNotVerifiedForCurrency</code> You are not verified for this currency</li>\n<li><code>ErrValueTooHigh</code> Order value too high</li>\n<li><code>ErrVolumeDenominationNotAllowed</code> Volume contains too many decimal places</li>\n<li><code>ErrVolumeTooHigh</code> Volume is above the maximum</li>\n<li><code>ErrVolumeTooLow</code> Volume is below the minimum</li>\n<li><code>ErrWithdrawalBlocked</code> To increase your withdraw limit add more information to your profile in settings.</li>\n<li><code>ErrWithdrawalNotFound</code> Cannot find that withdrawal</li></ul>",
       "name": "Error Codes"
     },
     {
-      "description": "<ul>\n    <li>\n        <strong>2024-06-26:</strong>\n          <ul>\n              <li>Added <code>account_id</code> to <code>/api/1/send</code> endpoint.</li>\n          </ul>\n      </li>\n    <li>\n        <strong>2024-05-21:</strong>\n        <ul>\n            <li>Add UNKNOWN status to Ticker model</li>\n            <li>Add UNKNOWN status to MarketInfo model</li>\n        </ul>\n    </li>\n  <li>\n      <strong>2024-05-09:</strong>\n      <ul>\n          <li>Added bank_recipient query parameter to ListBeneficiaries\n      </ul>\n  </li>\n   <li>\n        <strong>2024-04-26:</strong>\n        <ul>\n            <li>Added <code>DELETE /api/1/beneficiaries/:id</code> endpoint\n        </ul>\n   </li>\n   <li>\n        <strong>2024-04-24:</strong>\n        <ul>\n            <li>Added <code>POST /api/1/beneficiaries</code> endpoint\n        </ul>\n   </li>\n   <li>\n        <strong>2024-02-21:</strong>\n        <ul>\n            <li>Added <code>transfer_id</code> field to the <code>Withdrawal</code> response object\n        </ul>\n    </li>\n  <li>\n      <strong>2023-12-04:</strong>\n      <ul>\n          <li>Added <code>base_account_id</code> and <code>counter_account_id</code> fields to the <code>OrderV2</code> object\n      </ul>\n  </li>\n  <li><strong>2022-06-23:</strong>\n      <ul>\n        <li>Added <code>client_order_id</code> in Balance Stream section</li>\n        <li>Added \"time_in_force\" parameter to <code>POST /api/1/postorder</code> endpoint</li>\n        <li>Added \"time_in_force\" to <code>GET orders/:id</code> responses</li>\n        <li>Added \"time_in_force\" to <code>GET listorders</code> responses</li>\n        <li>Updated Market documentation to reflect <code>GET /api/exchange/1/candles</code> call is authenticated</li>\n      </ul>\n    </li>\n  <li><strong>2021-12-22:</strong> Added Balance Stream section.</li>\n  <li><strong>2021-10-29:</strong> Added User Stream section.</li>\n  <li><strong>2021-10-22:</strong> Add support for 1m candles for the <code>GET /api/exchange/1/candles</code> endpoint.</li>\n  <li><strong>2021-08-04:</strong> Add <strong>Error Codes</strong> section along with restrictions to users in jurisdiction with money travel rules.</li>\n  <li><strong>2021-02-18:</strong> Add <code>GET /api/exchange/1/transfers</code> to list deposits and withdrawals.</li>\n  <li><strong>2020-08-20:</strong> Removed Lightning API section.</li>\n  <li><strong>2020-06-22:</strong> Updated domain to api.luno.com</li>\n  <li><strong>2020-02-24:</strong> Added optional <code>destination_tag</code> and <code>has_destination_tag</code> parameter to <code>POST /api/1/send</code> to support XRP sends. Please note, not specifying <code>has_destination_tag</code> parameters to <code>POST /api/1/send</code> to support XRP sends with destination tags. Please see https://xrpl.org/source-and-destination-tags.html to learn more about XRP destination tags.\n  <li><strong>2020-02-12:</strong> Added <code>PUT /api/1/accounts/:id/name</code> to allow updating of an account name.</li>\n  <li><strong>2019-11-21:</strong> Added <code>GET /api/1/beneficiaries</code> to allow listing of bank beneficiaries.</li>\n  <li><strong>2018-07-16:</strong> Added aggregated order book API. Rate limits for market data have been increased to 1 per second. Market data may be cached for up to 1 second.</li>\n  <li><strong>2018-06-29:</strong> Add <code>post_only</code> parameter to <code>POST /api/1/postorder</code>.</li>\n  <li><strong>2018-06-15:</strong> Update PHP and Python SDK URLs.</li>\n  <li><strong>2018-06-13:</strong> Added <code>timestamp</code> to the orderbook streamer response.</li>\n  <li><strong>2018-06-08:</strong> Update Go SDK URL.</li>\n  <li><strong>2017-12-23:</strong> Added <code>maker_order_id</code> and <code>taker_order_id</code> to streaming trade updates. Deprecated <code>order_id</code>.</li>\n  <li><strong>2017-10-31:</strong> OAuth2 is no longer available for new applications.</li>\n  <li><strong>2017-10-16:</strong> Updated <code>/api/1/trades</code> to only return <code>BID</code> or <code>ASK</code> types and it may now lag behind latest data.</li>\n  <li><strong>2017-07-02:</strong> Updated websocket server to wss://ws.luno.com.</li>\n  <li><strong>2017-03-02:</strong> Added <code>/api/1/fee_info</code> which returns your fees and 30 day trading volume.</li>\n  <li><strong>2016-11-21:</strong> The <code>/api/1/trades</code> now returns at most 100 results per call.</li>\n  <li><strong>2016-11-01:</strong> Removed 50 receive address create limit on <code>POST /api/1/funding_address</code> to allow unlimited receive addresses per account. Address creation is rate limited to 1 per hour, allowing for bursts of up to 10 consecutive calls.</li>\n  <li><strong>2016-08-10:</strong> Added <code>GET /api/1/listtrades</code> to allow listing of recent trades. Please note that trades will soon be removed from the response of <code>GET /api/1/listorders</code> <code>GET /api/1/orders/:id</code>.</li>\n  <li><strong>2016-08-05:</strong> Added beta Streaming API section</li>\n  <li><strong>2016-07-25:</strong> Added optional <code>beneficiary_id</code> parameter to <code>POST /api/1/withdrawals</code>.</li>\n  <li><strong>2016-05-29:</strong> Error code 429 may be returned when exceeding rate limits. This will become the default as of 2016-07-01.</li>\n  <li><strong>2016-04-04:</strong> Added <code>completed_timestamp</code> field to <code>GET /api/1/listorders</code> and <code>GET /api/1/orders/:id</code> responses.</li>\n  <li><strong>2016-02-05:</strong> Added optional <code>since</code> parameter to <code>GET /api/1/trades</code> and added <code>is_buy</code> field to the response.</li>\n  <li><strong>2015-09-14:</strong> Added <code>POST /api/1/marketorder</code> to allow placing of market orders.</li>\n  <li><strong>2015-07-29:</strong> Added <code>Perm_R_Beneficiaries</code> and <code>Perm_W_Beneficiaries</code> permissions. You will have to generate a new API key if you require these permissions.</li>\n  <li><strong>2015-06-08:</strong> Renamed <code>GET /api/1/withdrawals/</code> to <code>GET /api/1/withdrawals</code> and <code>POST /api/1/withdrawals/</code> to <code>POST /api/1/withdrawals</code> to be more consistent with other endpoints. The old URLs are now deprecated.</li>\n  <li><strong>2015-05-28:</strong> Added <code>POST accounts</code> for creating additional accounts in specified currencies.</li>\n  <li><strong>2015-05-07:</strong> Added the \"Name\" field to the \"Balance\" response</li>\n  <li><strong>2015-04-25:</strong>\n    <ul>\n      <li>Added the \"Accounts\" section.</li>\n      <li>Added the account transactions and pending transactions calls.</li>\n      <li>Added the \"Permissions\" section.</li>\n      <li>Documented which permissions are required for each call.</li>\n      <li>Updated description of the \"send\" call. A pin is no longer required.</li>\n      <li>Added \"name\" parameter to <code>POST /api/1/funding_address.</code></li>\n    </ul>\n  </li>\n  <li><strong>2015-03-27:</strong> Return a list of trades for an order on <code>GET orders/:id</code> if the order has any trades.</li>\n  <li><strong>2015-01-30:</strong> Clarified the interpretation of <code>base</code>, <code>counter</code>, <code>base_fee</code> and <code>counter_fee</code> in the <code>list_orders</code> response in the case where <code>counter_fee</code> is nonzero for buy orders and where <code>base_fee</code> is nonzero for sell orders.</li>\n  <li><strong>2014-12-17:</strong> The amount parameter for withdrawal requests now excludes the withdrawal fee.</li>\n  <li><strong>2014-12-12:</strong>\n    <ul>\n      <li>Added the new Quotes API.</li>\n      <li>The <code>transactions</code> beta call has been deprecated.</li>\n    </ul>\n  </li>\n  <li><strong>2014-12-04:</strong> The <code>balance</code> method can now be called with no arguments to return all account balances.</li>\n  <li><strong>2014-08-26:</strong>\n    <ul>\n      <li>Added Send API call.</li>\n      <li>Added OAuth2 API.</li>\n    </ul>\n  </li>\n  <li><strong>2014-06-10:</strong> Orders placed through the API are no longer subject to different limits than those placed through the website.</li>\n  <li><strong>2014-06-02:</strong>\n    <ul>\n      <li>You can now create multiple API keys with different permissions (e.g. read-only, read/write).</li>\n      <li>Added calls to list, create, get and cancel withdrawal requests.</li>\n      <li>Added link to Android client library.</li>\n    </ul>\n  </li>\n  <li><strong>2014-05-29:</strong>\n    <ul>\n      <li>The preferred host name for API calls has changed to <code>api.mybitx.com</code>.</li>\n      <li>Added experimental call to retrieve transactions list.</li>\n      <li>Added call to allocate new receive addresses.</li>\n      <li>Receive address call now returns the amount received by that address.</li>\n      <li>You can now request <code>listorders</code> to return only the list of open orders.</li>\n    </ul>\n  </li>\n  <li><strong>2014-04-15:</strong> Previously orders created through the API would expire after 24 hours. Now, orders created through the API do not expire. The behaviour is now the same as for orders placed through the website.</li>\n  <li><strong>2014-01-25:</strong>\n    <ul>\n      <li>A new <code>funding_address</code> call has been added to get the bitcoin address you need to fund your trade account balance.</li>\n    </ul>\n  </li>\n  <li><strong>2014-01-21:</strong>\n    <ul>\n      <li>The API has been extended to support multiple asset pairs.</li>\n      <li>A new <code>balance</code> call has been added to query the trading account balance.</li>\n      <li>All URLs have been renamed from <code>/api/1/BTCZAR/x</code> to <code>/api/1/x?pair=XBTZAR</code>. The old URLs are now deprecated.</li>\n      <li>getlimits: This call has been deprecated. Please use the new <code>balance</code> call instead.</li>\n      <li>ticker: The <code>currency</code> field is now deprecated.</li>\n      <li>orderbook: The <code>currency</code> field is now deprecated.</li>\n      <li>trades: The <code>currency</code> field is now deprecated.</li>\n      <li>listorders: The <code>btc</code>, <code>zar</code>, <code>fee_btc</code> and <code>fee_zar</code> fields are now deprecated. Please use <code>base</code>, <code>counter</code>, <code>fee_base</code>, <code>fee_counter</code> fields instead.</li>\n      <li>The embedded market indicator has been removed since nobody is using it.</li>\n      <li>All deprecated features will continue to work for two months.</li>\n    </ul>\n  </li>\n  <li><strong>2014-01-06:</strong>\n    <ul>\n      <li>listorders: Added fee_btc and fee_zar fields.</li>\n      <li>listorders: Removed SETTLEMENT state (it's no longer relevant).</li>\n      <li>ticker: Removed mtgox_price (use Mt Gox's API directly instead).</li>\n    </ul>\n  </li>\n</ul>\n",
+      "description": "<ul>\n  <li>\n      <strong>2024-08-06:</strong>\n      <ul>\n          <li>Set integer timestamp fields format as <code>timestamp</code></li>\n      </ul>\n  </li>\n  <li>\n      <strong>2024-07-17:</strong>\n      <ul>\n          <li>Alter documentation to indicate that unix timestamp fields are integer instead of string</li>\n          <li>Add account_id field to Create receive address call</li>\n      </ul>\n  </li>\n    <li>\n        <strong>2024-06-26:</strong>\n          <ul>\n              <li>Added <code>account_id</code> to <code>/api/1/send</code> endpoint</li>\n          </ul>\n      </li>\n    <li>\n        <strong>2024-05-21:</strong>\n        <ul>\n            <li>Add UNKNOWN status to Ticker model</li>\n            <li>Add UNKNOWN status to MarketInfo model</li>\n        </ul>\n    </li>\n  <li>\n      <strong>2024-05-09:</strong>\n      <ul>\n          <li>Added bank_recipient query parameter to ListBeneficiaries\n      </ul>\n  </li>\n   <li>\n        <strong>2024-04-26:</strong>\n        <ul>\n            <li>Added <code>DELETE /api/1/beneficiaries/:id</code> endpoint\n        </ul>\n   </li>\n   <li>\n        <strong>2024-04-24:</strong>\n        <ul>\n            <li>Added <code>POST /api/1/beneficiaries</code> endpoint\n        </ul>\n   </li>\n   <li>\n        <strong>2024-02-21:</strong>\n        <ul>\n            <li>Added <code>transfer_id</code> field to the <code>Withdrawal</code> response object\n        </ul>\n    </li>\n  <li>\n      <strong>2023-12-04:</strong>\n      <ul>\n          <li>Added <code>base_account_id</code> and <code>counter_account_id</code> fields to the <code>OrderV2</code> object\n      </ul>\n  </li>\n  <li><strong>2022-06-23:</strong>\n      <ul>\n        <li>Added <code>client_order_id</code> in Balance Stream section</li>\n        <li>Added \"time_in_force\" parameter to <code>POST /api/1/postorder</code> endpoint</li>\n        <li>Added \"time_in_force\" to <code>GET orders/:id</code> responses</li>\n        <li>Added \"time_in_force\" to <code>GET listorders</code> responses</li>\n        <li>Updated Market documentation to reflect <code>GET /api/exchange/1/candles</code> call is authenticated</li>\n      </ul>\n    </li>\n  <li><strong>2021-12-22:</strong> Added Balance Stream section.</li>\n  <li><strong>2021-10-29:</strong> Added User Stream section.</li>\n  <li><strong>2021-10-22:</strong> Add support for 1m candles for the <code>GET /api/exchange/1/candles</code> endpoint.</li>\n  <li><strong>2021-08-04:</strong> Add <strong>Error Codes</strong> section along with restrictions to users in jurisdiction with money travel rules.</li>\n  <li><strong>2021-02-18:</strong> Add <code>GET /api/exchange/1/transfers</code> to list deposits and withdrawals.</li>\n  <li><strong>2020-08-20:</strong> Removed Lightning API section.</li>\n  <li><strong>2020-06-22:</strong> Updated domain to api.luno.com</li>\n  <li><strong>2020-02-24:</strong> Added optional <code>destination_tag</code> and <code>has_destination_tag</code> parameter to <code>POST /api/1/send</code> to support XRP sends. Please note, not specifying <code>has_destination_tag</code> parameters to <code>POST /api/1/send</code> to support XRP sends with destination tags. Please see https://xrpl.org/source-and-destination-tags.html to learn more about XRP destination tags.\n  <li><strong>2020-02-12:</strong> Added <code>PUT /api/1/accounts/:id/name</code> to allow updating of an account name.</li>\n  <li><strong>2019-11-21:</strong> Added <code>GET /api/1/beneficiaries</code> to allow listing of bank beneficiaries.</li>\n  <li><strong>2018-07-16:</strong> Added aggregated order book API. Rate limits for market data have been increased to 1 per second. Market data may be cached for up to 1 second.</li>\n  <li><strong>2018-06-29:</strong> Add <code>post_only</code> parameter to <code>POST /api/1/postorder</code>.</li>\n  <li><strong>2018-06-15:</strong> Update PHP and Python SDK URLs.</li>\n  <li><strong>2018-06-13:</strong> Added <code>timestamp</code> to the orderbook streamer response.</li>\n  <li><strong>2018-06-08:</strong> Update Go SDK URL.</li>\n  <li><strong>2017-12-23:</strong> Added <code>maker_order_id</code> and <code>taker_order_id</code> to streaming trade updates. Deprecated <code>order_id</code>.</li>\n  <li><strong>2017-10-31:</strong> OAuth2 is no longer available for new applications.</li>\n  <li><strong>2017-10-16:</strong> Updated <code>/api/1/trades</code> to only return <code>BID</code> or <code>ASK</code> types and it may now lag behind latest data.</li>\n  <li><strong>2017-07-02:</strong> Updated websocket server to wss://ws.luno.com.</li>\n  <li><strong>2017-03-02:</strong> Added <code>/api/1/fee_info</code> which returns your fees and 30 day trading volume.</li>\n  <li><strong>2016-11-21:</strong> The <code>/api/1/trades</code> now returns at most 100 results per call.</li>\n  <li><strong>2016-11-01:</strong> Removed 50 receive address create limit on <code>POST /api/1/funding_address</code> to allow unlimited receive addresses per account. Address creation is rate limited to 1 per hour, allowing for bursts of up to 10 consecutive calls.</li>\n  <li><strong>2016-08-10:</strong> Added <code>GET /api/1/listtrades</code> to allow listing of recent trades. Please note that trades will soon be removed from the response of <code>GET /api/1/listorders</code> <code>GET /api/1/orders/:id</code>.</li>\n  <li><strong>2016-08-05:</strong> Added beta Streaming API section</li>\n  <li><strong>2016-07-25:</strong> Added optional <code>beneficiary_id</code> parameter to <code>POST /api/1/withdrawals</code>.</li>\n  <li><strong>2016-05-29:</strong> Error code 429 may be returned when exceeding rate limits. This will become the default as of 2016-07-01.</li>\n  <li><strong>2016-04-04:</strong> Added <code>completed_timestamp</code> field to <code>GET /api/1/listorders</code> and <code>GET /api/1/orders/:id</code> responses.</li>\n  <li><strong>2016-02-05:</strong> Added optional <code>since</code> parameter to <code>GET /api/1/trades</code> and added <code>is_buy</code> field to the response.</li>\n  <li><strong>2015-09-14:</strong> Added <code>POST /api/1/marketorder</code> to allow placing of market orders.</li>\n  <li><strong>2015-07-29:</strong> Added <code>Perm_R_Beneficiaries</code> and <code>Perm_W_Beneficiaries</code> permissions. You will have to generate a new API key if you require these permissions.</li>\n  <li><strong>2015-06-08:</strong> Renamed <code>GET /api/1/withdrawals/</code> to <code>GET /api/1/withdrawals</code> and <code>POST /api/1/withdrawals/</code> to <code>POST /api/1/withdrawals</code> to be more consistent with other endpoints. The old URLs are now deprecated.</li>\n  <li><strong>2015-05-28:</strong> Added <code>POST accounts</code> for creating additional accounts in specified currencies.</li>\n  <li><strong>2015-05-07:</strong> Added the \"Name\" field to the \"Balance\" response</li>\n  <li><strong>2015-04-25:</strong>\n    <ul>\n      <li>Added the \"Accounts\" section.</li>\n      <li>Added the account transactions and pending transactions calls.</li>\n      <li>Added the \"Permissions\" section.</li>\n      <li>Documented which permissions are required for each call.</li>\n      <li>Updated description of the \"send\" call. A pin is no longer required.</li>\n      <li>Added \"name\" parameter to <code>POST /api/1/funding_address.</code></li>\n    </ul>\n  </li>\n  <li><strong>2015-03-27:</strong> Return a list of trades for an order on <code>GET orders/:id</code> if the order has any trades.</li>\n  <li><strong>2015-01-30:</strong> Clarified the interpretation of <code>base</code>, <code>counter</code>, <code>base_fee</code> and <code>counter_fee</code> in the <code>list_orders</code> response in the case where <code>counter_fee</code> is nonzero for buy orders and where <code>base_fee</code> is nonzero for sell orders.</li>\n  <li><strong>2014-12-17:</strong> The amount parameter for withdrawal requests now excludes the withdrawal fee.</li>\n  <li><strong>2014-12-12:</strong>\n    <ul>\n      <li>Added the new Quotes API.</li>\n      <li>The <code>transactions</code> beta call has been deprecated.</li>\n    </ul>\n  </li>\n  <li><strong>2014-12-04:</strong> The <code>balance</code> method can now be called with no arguments to return all account balances.</li>\n  <li><strong>2014-08-26:</strong>\n    <ul>\n      <li>Added Send API call.</li>\n      <li>Added OAuth2 API.</li>\n    </ul>\n  </li>\n  <li><strong>2014-06-10:</strong> Orders placed through the API are no longer subject to different limits than those placed through the website.</li>\n  <li><strong>2014-06-02:</strong>\n    <ul>\n      <li>You can now create multiple API keys with different permissions (e.g. read-only, read/write).</li>\n      <li>Added calls to list, create, get and cancel withdrawal requests.</li>\n      <li>Added link to Android client library.</li>\n    </ul>\n  </li>\n  <li><strong>2014-05-29:</strong>\n    <ul>\n      <li>The preferred host name for API calls has changed to <code>api.mybitx.com</code>.</li>\n      <li>Added experimental call to retrieve transactions list.</li>\n      <li>Added call to allocate new receive addresses.</li>\n      <li>Receive address call now returns the amount received by that address.</li>\n      <li>You can now request <code>listorders</code> to return only the list of open orders.</li>\n    </ul>\n  </li>\n  <li><strong>2014-04-15:</strong> Previously orders created through the API would expire after 24 hours. Now, orders created through the API do not expire. The behaviour is now the same as for orders placed through the website.</li>\n  <li><strong>2014-01-25:</strong>\n    <ul>\n      <li>A new <code>funding_address</code> call has been added to get the bitcoin address you need to fund your trade account balance.</li>\n    </ul>\n  </li>\n  <li><strong>2014-01-21:</strong>\n    <ul>\n      <li>The API has been extended to support multiple asset pairs.</li>\n      <li>A new <code>balance</code> call has been added to query the trading account balance.</li>\n      <li>All URLs have been renamed from <code>/api/1/BTCZAR/x</code> to <code>/api/1/x?pair=XBTZAR</code>. The old URLs are now deprecated.</li>\n      <li>getlimits: This call has been deprecated. Please use the new <code>balance</code> call instead.</li>\n      <li>ticker: The <code>currency</code> field is now deprecated.</li>\n      <li>orderbook: The <code>currency</code> field is now deprecated.</li>\n      <li>trades: The <code>currency</code> field is now deprecated.</li>\n      <li>listorders: The <code>btc</code>, <code>zar</code>, <code>fee_btc</code> and <code>fee_zar</code> fields are now deprecated. Please use <code>base</code>, <code>counter</code>, <code>fee_base</code>, <code>fee_counter</code> fields instead.</li>\n      <li>The embedded market indicator has been removed since nobody is using it.</li>\n      <li>All deprecated features will continue to work for two months.</li>\n    </ul>\n  </li>\n  <li><strong>2014-01-06:</strong>\n    <ul>\n      <li>listorders: Added fee_btc and fee_zar fields.</li>\n      <li>listorders: Removed SETTLEMENT state (it's no longer relevant).</li>\n      <li>ticker: Removed mtgox_price (use Mt Gox's API directly instead).</li>\n    </ul>\n  </li>\n</ul>\n",
       "name": "Changelog"
     }
   ],
@@ -2582,7 +2589,7 @@
           },
           "created_at": {
             "description": "Unix time the withdrawal was initiated, in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreatedAt"
           },
@@ -2664,7 +2671,7 @@
           },
           "timestamp": {
             "description": "Unix timestamp in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "Start"
           },
@@ -2689,7 +2696,7 @@
           },
           "created_at": {
             "description": "Unix time the withdrawal was initiated, in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreatedAt"
           },
@@ -2811,7 +2818,7 @@
           },
           "created_at": {
             "description": "Unix time the move was initiated, in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreatedAt"
           },
@@ -2847,7 +2854,7 @@
           },
           "updated_at": {
             "description": "Unix time the move was last updated, in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "UpdatedAt"
           }
@@ -2896,7 +2903,7 @@
           },
           "created_at": {
             "description": "Unix time the move was initiated, in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreatedAt"
           },
@@ -2932,7 +2939,7 @@
           },
           "updated_at": {
             "description": "Unix time the move was last updated, in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "UpdatedAt"
           }
@@ -2962,7 +2969,7 @@
           },
           "completed_timestamp": {
             "description": "Time of order completion (Unix milliseconds)\n\nThis value is set at the time of this order leaving the order book,\neither immediately upon posting or later on due to a trade or cancellation.\nWhilst the order is still pending/live it will be 0.",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CompletedTimestamp"
           },
@@ -2980,13 +2987,13 @@
           },
           "creation_timestamp": {
             "description": "Time of order creation (Unix milliseconds)",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreationTimestamp"
           },
           "expiration_timestamp": {
             "description": "Time of order expiration (Unix milliseconds)\n\nThis value is set at the time of processing a request from you to cancel the order, otherwise it will be 0.",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "ExpirationTimestamp"
           },
@@ -3118,7 +3125,7 @@
           },
           "completed_timestamp": {
             "description": "Time of order completion (Unix milliseconds)\n\nThis value is set at the time of this order leaving the order book,\neither immediately upon posting or later on due to a trade or cancellation.\nWhilst the order is still pending/live it will be 0.",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CompletedTimestamp"
           },
@@ -3130,13 +3137,13 @@
           },
           "creation_timestamp": {
             "description": "Time of order creation (Unix milliseconds)",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreationTimestamp"
           },
           "expiration_timestamp": {
             "description": "Time of order expiration (Unix milliseconds)\n\nThis value is set at the time of processing a request from you to cancel the order, otherwise it will be 0.",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "ExpirationTimestamp"
           },
@@ -3247,7 +3254,7 @@
           },
           "timestamp": {
             "description": "Unix timestamp in milliseconds of the tick",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "Timestamp"
           }
@@ -3266,7 +3273,7 @@
           },
           "created_at": {
             "description": "Unix time the withdrawal was initiated, in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreatedAt"
           },
@@ -3584,7 +3591,7 @@
           },
           "completed_timestamp": {
             "description": "Time of order completion (Unix milliseconds)\n\nThis value is set at the time of this order leaving the order book,\neither immediately upon posting or later on due to a trade or cancellation.\nWhilst the order is still pending/live it will be 0.",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CompletedTimestamp"
           },
@@ -3596,13 +3603,13 @@
           },
           "creation_timestamp": {
             "description": "Time of order creation (Unix milliseconds)",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreationTimestamp"
           },
           "expiration_timestamp": {
             "description": "Time of order expiration (Unix milliseconds)\n\nThis value is set at the time of processing a request from you to cancel the order, otherwise it will be 0.",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "ExpirationTimestamp"
           },
@@ -3739,7 +3746,7 @@
           },
           "completed_timestamp": {
             "description": "Time of order completion (Unix milliseconds)\n\nThis value is set at the time of this order leaving the order book,\neither immediately upon posting or later on due to a trade or cancellation.\nWhilst the order is still pending/live it will be 0.",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CompletedTimestamp"
           },
@@ -3757,13 +3764,13 @@
           },
           "creation_timestamp": {
             "description": "Time of order creation (Unix milliseconds)",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreationTimestamp"
           },
           "expiration_timestamp": {
             "description": "Time of order expiration (Unix milliseconds)\n\nThis value is set at the time of processing a request from you to cancel the order, otherwise it will be 0.",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "ExpirationTimestamp"
           },
@@ -3902,7 +3909,7 @@
           },
           "timestamp": {
             "description": "Unix timestamp in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "Timestamp"
           },
@@ -3940,7 +3947,7 @@
             "x-go-name": "Asset"
           },
           "assigned_at": {
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "AssignedAt"
           },
@@ -4043,7 +4050,7 @@
           },
           "timestamp": {
             "description": "Unix timestamp in milliseconds of the tick",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "Timestamp"
           }
@@ -4140,7 +4147,7 @@
           },
           "timestamp": {
             "description": "Unix timestamp in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "Timestamp"
           },
@@ -4237,7 +4244,7 @@
           },
           "timestamp": {
             "description": "Unix timestamp, in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "Timestamp"
           }
@@ -4257,7 +4264,7 @@
           },
           "created_at": {
             "description": "Unix timestamp the transfer was initiated, in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreatedAt"
           },
@@ -4298,7 +4305,7 @@
           },
           "created_at": {
             "description": "Unix time the withdrawal was initiated, in milliseconds",
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "CreatedAt"
           },
@@ -4465,7 +4472,7 @@
             "x-go-name": "Asset"
           },
           "assigned_at": {
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "AssignedAt"
           },
@@ -4556,7 +4563,7 @@
             "x-go-name": "Asset"
           },
           "assigned_at": {
-            "type": "string",
+            "type": "integer",
             "format": "timestamp",
             "x-go-name": "AssignedAt"
           },
