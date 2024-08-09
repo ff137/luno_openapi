@@ -27,6 +27,7 @@ ruff = ">= 0.5.1"
 playwright = "~= 1.45.1"
 autoflake = "~= 2.3.1"
 isort = "~= 5.13.2"
+black = "~= 24.8.0"
 
 
 [build-system]
