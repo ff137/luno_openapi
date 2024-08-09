@@ -45,6 +45,12 @@ class ReceiveApi:
             Optional[StrictStr],
             Field(description="An optional name for the new Receive Address"),
         ] = None,
+        account_id: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="An optional account_id to assign the new Receive Address too"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -65,6 +71,8 @@ class ReceiveApi:
         :type asset: str
         :param name: An optional name for the new Receive Address
         :type name: str
+        :param account_id: An optional account_id to assign the new Receive Address too
+        :type account_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -90,6 +98,7 @@ class ReceiveApi:
         _param = self._create_funding_address_serialize(
             asset=asset,
             name=name,
+            account_id=account_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -116,6 +125,12 @@ class ReceiveApi:
             Optional[StrictStr],
             Field(description="An optional name for the new Receive Address"),
         ] = None,
+        account_id: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="An optional account_id to assign the new Receive Address too"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -136,6 +151,8 @@ class ReceiveApi:
         :type asset: str
         :param name: An optional name for the new Receive Address
         :type name: str
+        :param account_id: An optional account_id to assign the new Receive Address too
+        :type account_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -161,6 +178,7 @@ class ReceiveApi:
         _param = self._create_funding_address_serialize(
             asset=asset,
             name=name,
+            account_id=account_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -187,6 +205,12 @@ class ReceiveApi:
             Optional[StrictStr],
             Field(description="An optional name for the new Receive Address"),
         ] = None,
+        account_id: Annotated[
+            Optional[StrictInt],
+            Field(
+                description="An optional account_id to assign the new Receive Address too"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -207,6 +231,8 @@ class ReceiveApi:
         :type asset: str
         :param name: An optional name for the new Receive Address
         :type name: str
+        :param account_id: An optional account_id to assign the new Receive Address too
+        :type account_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -232,6 +258,7 @@ class ReceiveApi:
         _param = self._create_funding_address_serialize(
             asset=asset,
             name=name,
+            account_id=account_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -250,6 +277,7 @@ class ReceiveApi:
         self,
         asset,
         name,
+        account_id,
         _request_auth,
         _content_type,
         _headers,
@@ -276,6 +304,10 @@ class ReceiveApi:
         if name is not None:
 
             _query_params.append(("name", name))
+
+        if account_id is not None:
+
+            _query_params.append(("account_id", account_id))
 
         # process the header parameters
         # process the form parameters
