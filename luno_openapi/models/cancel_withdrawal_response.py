@@ -19,7 +19,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Self
 
 
@@ -29,7 +29,7 @@ class CancelWithdrawalResponse(BaseModel):
     """  # noqa: E501
 
     amount: Optional[StrictStr] = Field(default=None, description="Amount to withdraw")
-    created_at: Optional[StrictStr] = Field(
+    created_at: Optional[StrictInt] = Field(
         default=None,
         description="Unix time the withdrawal was initiated, in milliseconds",
     )

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **str** | Amount that has been credited or debited on the account. This is always a positive value regardless of the transfer direction. | [optional] 
-**created_at** | **str** | Unix timestamp the transfer was initiated, in milliseconds | [optional] 
+**created_at** | **int** | Unix timestamp the transfer was initiated, in milliseconds | [optional] 
 **fee** | **str** | Fee that has been charged by Luno with regards to this transfer. This is not included in the &#x60;amount&#x60;. For example, if you receive a transaction with the raw amount of 1 BTC and we charge a &#x60;fee&#x60; of 0.003 BTC on this transaction you will be credited the &#x60;amount&#x60; of 0.997 BTC. | [optional] 
 **id** | **str** | Transfer unique identifier | [optional] 
 **inbound** | **bool** | True for credit transfers, false for debits. | [optional] 

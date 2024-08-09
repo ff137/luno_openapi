@@ -19,7 +19,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing_extensions import Self
 
 from luno_openapi.models.address_meta import AddressMeta
@@ -34,7 +34,7 @@ class GetFundingAddressResponse(BaseModel):
     address: Optional[StrictStr] = None
     address_meta: Optional[List[AddressMeta]] = None
     asset: Optional[StrictStr] = None
-    assigned_at: Optional[StrictStr] = None
+    assigned_at: Optional[StrictInt] = None
     name: Optional[StrictStr] = None
     qr_code_uri: Optional[StrictStr] = None
     receive_fee: Optional[StrictStr] = None

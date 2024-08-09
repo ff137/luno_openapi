@@ -56,7 +56,7 @@ class Transaction(BaseModel):
         description="A unique reference for the transaction this statement entry relates to. There may be multiple statement entries related to the same transaction. E.g. a withdrawal and the withdrawal fee are two separate statement entries with the same reference.",
     )
     row_index: Optional[StrictInt] = None
-    timestamp: Optional[int] = Field(
+    timestamp: Optional[StrictInt] = Field(
         default=None, description="Unix timestamp, in milliseconds"
     )
     __properties: ClassVar[List[str]] = [

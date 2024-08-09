@@ -57,7 +57,7 @@ class TradeV2(BaseModel):
     pair: Optional[StrictStr] = Field(default=None, description="Currency pair")
     price: Optional[StrictStr] = Field(default=None, description="Order price")
     sequence: Optional[StrictInt] = None
-    timestamp: Optional[int] = Field(
+    timestamp: Optional[StrictInt] = Field(
         default=None, description="Unix timestamp in milliseconds"
     )
     type: Optional[StrictStr] = Field(default=None, description="Order type")

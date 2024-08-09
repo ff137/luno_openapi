@@ -19,7 +19,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Self
 
 
@@ -41,7 +41,7 @@ class GetTickerResponse(BaseModel):
         default=None,
         description="Market current status  <code>ACTIVE</code> when the market is trading normally  <code>POSTONLY</code> when the market has been suspended and only post-only orders will be accepted  <code>DISABLED</code> when the market is shutdown and no orders can be accepted  <code>UNKNOWN</code> the market status could not be determined. This is a temporary state.",
     )
-    timestamp: Optional[int] = Field(
+    timestamp: Optional[StrictInt] = Field(
         default=None, description="Unix timestamp in milliseconds of the tick"
     )
     __properties: ClassVar[List[str]] = [

@@ -19,7 +19,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing_extensions import Self
 
 
@@ -32,7 +32,7 @@ class Transfer(BaseModel):
         default=None,
         description="Amount that has been credited or debited on the account. This is always a positive value regardless of the transfer direction.",
     )
-    created_at: Optional[StrictStr] = Field(
+    created_at: Optional[StrictInt] = Field(
         default=None,
         description="Unix timestamp the transfer was initiated, in milliseconds",
     )

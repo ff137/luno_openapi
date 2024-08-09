@@ -7,10 +7,10 @@ GetOrderResponse response
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **base** | **str** | Amount of base filled, this value is always positive. | [optional] 
-**completed_timestamp** | **str** | Time of order completion (Unix milliseconds)  This value is set at the time of this order leaving the order book, either immediately upon posting or later on due to a trade or cancellation. Whilst the order is still pending/live it will be 0. | [optional] 
+**completed_timestamp** | **int** | Time of order completion (Unix milliseconds)  This value is set at the time of this order leaving the order book, either immediately upon posting or later on due to a trade or cancellation. Whilst the order is still pending/live it will be 0. | [optional] 
 **counter** | **str** | Amount of counter filled, this value is always positive. | [optional] 
-**creation_timestamp** | **str** | Time of order creation (Unix milliseconds) | [optional] 
-**expiration_timestamp** | **str** | Time of order expiration (Unix milliseconds)  This value is set at the time of processing a request from you to cancel the order, otherwise it will be 0. | [optional] 
+**creation_timestamp** | **int** | Time of order creation (Unix milliseconds) | [optional] 
+**expiration_timestamp** | **int** | Time of order expiration (Unix milliseconds)  This value is set at the time of processing a request from you to cancel the order, otherwise it will be 0. | [optional] 
 **fee_base** | **str** | Base amount of fees to be charged | [optional] 
 **fee_counter** | **str** | Counter amount of fees to be charged | [optional] 
 **limit_price** | **str** | Limit price to transact | [optional] 

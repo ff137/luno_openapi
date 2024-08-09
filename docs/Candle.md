@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **high** | **str** | High price | [optional] 
 **low** | **str** | Low price | [optional] 
 **open** | **str** | Opening price | [optional] 
-**timestamp** | **str** | Unix timestamp in milliseconds | [optional] 
+**timestamp** | **int** | Unix timestamp in milliseconds | [optional] 
 **volume** | **str** | Volume traded | [optional] 
 
 ## Example

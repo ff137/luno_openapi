@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **address** | **str** |  | [optional] 
 **address_meta** | [**List[AddressMeta]**](AddressMeta.md) |  | [optional] 
 **asset** | **str** |  | [optional] 
-**assigned_at** | **str** |  | [optional] 
+**assigned_at** | **int** |  | [optional] 
 **name** | **str** |  | [optional] 
 **qr_code_uri** | **str** |  | [optional] 
 **receive_fee** | **str** |  | [optional] 

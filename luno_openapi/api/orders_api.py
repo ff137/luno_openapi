@@ -1727,13 +1727,13 @@ class OrdersApi:
             StrictStr, Field(description="Filter to trades of this currency pair.")
         ],
         since: Annotated[
-            Optional[StrictStr],
+            Optional[StrictInt],
             Field(
                 description="Filter to trades on or after this timestamp (Unix milliseconds)."
             ),
         ] = None,
         before: Annotated[
-            Optional[StrictStr],
+            Optional[StrictInt],
             Field(
                 description="Filter to trades before this timestamp (Unix milliseconds)."
             ),
@@ -1779,9 +1779,9 @@ class OrdersApi:
         :param pair: Filter to trades of this currency pair. (required)
         :type pair: str
         :param since: Filter to trades on or after this timestamp (Unix milliseconds).
-        :type since: str
+        :type since: int
         :param before: Filter to trades before this timestamp (Unix milliseconds).
-        :type before: str
+        :type before: int
         :param after_seq: Filter to trades from (including) this sequence number. Default behaviour is not to include this filter.
         :type after_seq: int
         :param before_seq: Filter to trades before (excluding) this sequence number. Default behaviour is not to include this filter.
@@ -1845,13 +1845,13 @@ class OrdersApi:
             StrictStr, Field(description="Filter to trades of this currency pair.")
         ],
         since: Annotated[
-            Optional[StrictStr],
+            Optional[StrictInt],
             Field(
                 description="Filter to trades on or after this timestamp (Unix milliseconds)."
             ),
         ] = None,
         before: Annotated[
-            Optional[StrictStr],
+            Optional[StrictInt],
             Field(
                 description="Filter to trades before this timestamp (Unix milliseconds)."
             ),
@@ -1897,9 +1897,9 @@ class OrdersApi:
         :param pair: Filter to trades of this currency pair. (required)
         :type pair: str
         :param since: Filter to trades on or after this timestamp (Unix milliseconds).
-        :type since: str
+        :type since: int
         :param before: Filter to trades before this timestamp (Unix milliseconds).
-        :type before: str
+        :type before: int
         :param after_seq: Filter to trades from (including) this sequence number. Default behaviour is not to include this filter.
         :type after_seq: int
         :param before_seq: Filter to trades before (excluding) this sequence number. Default behaviour is not to include this filter.
@@ -1963,13 +1963,13 @@ class OrdersApi:
             StrictStr, Field(description="Filter to trades of this currency pair.")
         ],
         since: Annotated[
-            Optional[StrictStr],
+            Optional[StrictInt],
             Field(
                 description="Filter to trades on or after this timestamp (Unix milliseconds)."
             ),
         ] = None,
         before: Annotated[
-            Optional[StrictStr],
+            Optional[StrictInt],
             Field(
                 description="Filter to trades before this timestamp (Unix milliseconds)."
             ),
@@ -2015,9 +2015,9 @@ class OrdersApi:
         :param pair: Filter to trades of this currency pair. (required)
         :type pair: str
         :param since: Filter to trades on or after this timestamp (Unix milliseconds).
-        :type since: str
+        :type since: int
         :param before: Filter to trades before this timestamp (Unix milliseconds).
-        :type before: str
+        :type before: int
         :param after_seq: Filter to trades from (including) this sequence number. Default behaviour is not to include this filter.
         :type after_seq: int
         :param before_seq: Filter to trades before (excluding) this sequence number. Default behaviour is not to include this filter.

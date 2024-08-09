@@ -19,7 +19,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 
@@ -32,7 +32,7 @@ class Candle(BaseModel):
     high: Optional[StrictStr] = Field(default=None, description="High price")
     low: Optional[StrictStr] = Field(default=None, description="Low price")
     open: Optional[StrictStr] = Field(default=None, description="Opening price")
-    timestamp: Optional[int] = Field(
+    timestamp: Optional[StrictInt] = Field(
         default=None, description="Unix timestamp in milliseconds"
     )
     volume: Optional[StrictStr] = Field(default=None, description="Volume traded")

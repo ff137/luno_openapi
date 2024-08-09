@@ -19,7 +19,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Self
 
 
@@ -35,7 +35,7 @@ class GetMoveResponse(BaseModel):
     client_move_id: Optional[StrictStr] = Field(
         default=None, description="User defined unique ID"
     )
-    created_at: Optional[StrictStr] = Field(
+    created_at: Optional[StrictInt] = Field(
         default=None, description="Unix time the move was initiated, in milliseconds"
     )
     credit_account_id: Optional[StrictStr] = Field(
@@ -51,7 +51,7 @@ class GetMoveResponse(BaseModel):
         default=None,
         description="Current status of the move.  Status meaning:<br> <code>CREATED</code> The move is awaiting execution.<br> <code>MOVING</code> The funds have been reserved and the move is being executed.<br> <code>SUCCESSFUL</code> The move has completed successfully and should be reflected in both accounts available balance.<br> <code>FAILED</code> The move has failed. There could be many reasons for this but the most likely is that the debit account doesn't have enough available funds to move.<br>",
     )
-    updated_at: Optional[StrictStr] = Field(
+    updated_at: Optional[StrictInt] = Field(
         default=None, description="Unix time the move was last updated, in milliseconds"
     )
     __properties: ClassVar[List[str]] = [

@@ -19,7 +19,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing_extensions import Self
 
 
@@ -32,7 +32,7 @@ class GetOrderResponse(BaseModel):
         default=None,
         description="Amount of base filled, this value is always positive.",
     )
-    completed_timestamp: Optional[int] = Field(
+    completed_timestamp: Optional[StrictInt] = Field(
         default=None,
         description="Time of order completion (Unix milliseconds)  This value is set at the time of this order leaving the order book, either immediately upon posting or later on due to a trade or cancellation. Whilst the order is still pending/live it will be 0.",
     )
@@ -40,10 +40,10 @@ class GetOrderResponse(BaseModel):
         default=None,
         description="Amount of counter filled, this value is always positive.",
     )
-    creation_timestamp: Optional[int] = Field(
+    creation_timestamp: Optional[StrictInt] = Field(
         default=None, description="Time of order creation (Unix milliseconds)"
     )
-    expiration_timestamp: Optional[int] = Field(
+    expiration_timestamp: Optional[StrictInt] = Field(
         default=None,
         description="Time of order expiration (Unix milliseconds)  This value is set at the time of processing a request from you to cancel the order, otherwise it will be 0.",
     )

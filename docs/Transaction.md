@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **kind** | **str** | The kind of the transaction indicates the transaction flow  Kinds explained:&lt;br&gt; &lt;code&gt;FEE&lt;/code&gt; when transaction is towards Luno fees&lt;br&gt; &lt;code&gt;TRANSFER&lt;/code&gt; when the transaction is a one way flow of funds, e.g. a deposit or crypto send&lt;br&gt; &lt;code&gt;EXCHANGE&lt;/code&gt; when the transaction is part of a two way exchange, e.g. a trade or instant buy | [optional] 
 **reference** | **str** | A unique reference for the transaction this statement entry relates to. There may be multiple statement entries related to the same transaction. E.g. a withdrawal and the withdrawal fee are two separate statement entries with the same reference. | [optional] 
 **row_index** | **int** |  | [optional] 
-**timestamp** | **str** | Unix timestamp, in milliseconds | [optional] 
+**timestamp** | **int** | Unix timestamp, in milliseconds | [optional] 
 
 ## Example
 
