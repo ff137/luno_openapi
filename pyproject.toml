@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "luno_openapi"
-version = "1.2.3"
+version = "1.2.5"
 description = "Luno API"
 authors = ["Mourits de Beer <ff137@proton.me>"]
 license = "LICENSE.md"
