@@ -469,8 +469,8 @@ async with luno_openapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = luno_openapi.OrdersApi(api_client)
     pair = 'XBTZAR' # str | Filter to trades of this currency pair.
-    since = '1470810728478' # str | Filter to trades on or after this timestamp (Unix milliseconds). (optional)
-    before = '1470810728478' # str | Filter to trades before this timestamp (Unix milliseconds). (optional)
+    since = 56 # int | Filter to trades on or after this timestamp (Unix milliseconds). (optional)
+    before = 56 # int | Filter to trades before this timestamp (Unix milliseconds). (optional)
     after_seq = 10 # int | Filter to trades from (including) this sequence number. Default behaviour is not to include this filter. (optional)
     before_seq = 1 # int | Filter to trades before (excluding) this sequence number. Default behaviour is not to include this filter. (optional)
     sort_desc = true # bool | If set to true, sorts trades in descending order, otherwise ascending order will be assumed. (optional)
@@ -493,8 +493,8 @@ async with luno_openapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pair** | **str**| Filter to trades of this currency pair. | 
- **since** | **str**| Filter to trades on or after this timestamp (Unix milliseconds). | [optional] 
- **before** | **str**| Filter to trades before this timestamp (Unix milliseconds). | [optional] 
+ **since** | **int**| Filter to trades on or after this timestamp (Unix milliseconds). | [optional] 
+ **before** | **int**| Filter to trades before this timestamp (Unix milliseconds). | [optional] 
  **after_seq** | **int**| Filter to trades from (including) this sequence number. Default behaviour is not to include this filter. | [optional] 
  **before_seq** | **int**| Filter to trades before (excluding) this sequence number. Default behaviour is not to include this filter. | [optional] 
  **sort_desc** | **bool**| If set to true, sorts trades in descending order, otherwise ascending order will be assumed. | [optional] 

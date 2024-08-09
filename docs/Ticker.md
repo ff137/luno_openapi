@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **pair** | **str** |  | [optional] 
 **rolling_24_hour_volume** | **str** | 24h rolling trade volume | [optional] 
 **status** | **str** | Market current status  &lt;code&gt;ACTIVE&lt;/code&gt; when the market is trading normally  &lt;code&gt;POSTONLY&lt;/code&gt; when the market has been suspended and only post-only orders will be accepted  &lt;code&gt;DISABLED&lt;/code&gt; when the market is shutdown and no orders can be accepted  &lt;code&gt;UNKNOWN&lt;/code&gt; the market status could not be determined. This is a temporary state. | [optional] 
-**timestamp** | **str** | Unix timestamp in milliseconds of the tick | [optional] 
+**timestamp** | **int** | Unix timestamp in milliseconds of the tick | [optional] 
 
 ## Example
 

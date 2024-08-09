@@ -7,7 +7,7 @@ CancelWithdrawalResponse response
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **str** | Amount to withdraw | [optional] 
-**created_at** | **str** | Unix time the withdrawal was initiated, in milliseconds | [optional] 
+**created_at** | **int** | Unix time the withdrawal was initiated, in milliseconds | [optional] 
 **currency** | **str** | Withdrawal currency. | [optional] 
 **external_id** | **str** | External ID has the value that was passed in when the Withdrawal request was posted. | [optional] 
 **fee** | **str** | Withdrawal fee | [optional] 

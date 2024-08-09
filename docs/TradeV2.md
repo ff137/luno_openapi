@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **pair** | **str** | Currency pair | [optional] 
 **price** | **str** | Order price | [optional] 
 **sequence** | **int** |  | [optional] 
-**timestamp** | **str** | Unix timestamp in milliseconds | [optional] 
+**timestamp** | **int** | Unix timestamp in milliseconds | [optional] 
 **type** | **str** | Order type | [optional] 
 **volume** | **str** | Order volume | [optional] 
 

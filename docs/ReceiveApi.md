@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **create_funding_address**
-> CreateFundingAddressResponse create_funding_address(asset, name=name)
+> CreateFundingAddressResponse create_funding_address(asset, name=name, account_id=account_id)
 
 Create receive address
 
@@ -37,10 +37,11 @@ async with luno_openapi.ApiClient(configuration) as api_client:
     api_instance = luno_openapi.ReceiveApi(api_client)
     asset = 'XBT' # str | Currency code of the asset.
     name = 'My BTC wallet' # str | An optional name for the new Receive Address (optional)
+    account_id = 12345 # int | An optional account_id to assign the new Receive Address too (optional)
 
     try:
         # Create receive address
-        api_response = await api_instance.create_funding_address(asset, name=name)
+        api_response = await api_instance.create_funding_address(asset, name=name, account_id=account_id)
         print("The response of ReceiveApi->create_funding_address:\n")
         pprint(api_response)
     except Exception as e:
@@ -56,6 +57,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **str**| Currency code of the asset. | 
  **name** | **str**| An optional name for the new Receive Address | [optional] 
+ **account_id** | **int**| An optional account_id to assign the new Receive Address too | [optional] 
 
 ### Return type
 
