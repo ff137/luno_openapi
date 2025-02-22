@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
+        "anyio",
         "asyncio",
+        "autoflake",
         "bsatvv",
         "cafile",
         "dateutil",
@@ -10,15 +12,18 @@
         "Duser",
         "ETHZAR",
         "forex",
+        "isort",
         "klass",
         "levelname",
         "listorders",
         "listtrades",
+        "Luno",
         "marketorder",
         "Postbank",
         "POSTONLY",
         "postorder",
         "pyproject",
+        "pytest",
         "pyversion",
         "resp",
         "Ringgit",
@@ -26,6 +31,7 @@
         "timezone",
         "txid",
         "Tyme",
+        "urllib",
         "XBTZAR"
     ]
 }
