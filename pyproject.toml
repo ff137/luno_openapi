@@ -3,11 +3,10 @@ name = "luno_openapi"
 version = "1.2.5"
 description = "Luno API"
 authors = ["Mourits de Beer <ff137@proton.me>"]
-license = "LICENSE.md"
+license = "MIT"
 readme = "README.md"
 repository = "https://github.com/ff137/luno_openapi"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Luno API"]
-include = ["luno_openapi/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -19,7 +18,7 @@ aiohttp-retry = ">= 2.8.3"
 pydantic = ">= 2.8"
 typing-extensions = ">= 4.12.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = ">= 8.2.2"
 anyio = ">= 4.4.0"
 types-python-dateutil = ">= 2.9.0"
