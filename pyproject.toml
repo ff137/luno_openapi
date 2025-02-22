@@ -28,7 +28,6 @@ autoflake = "~= 2.3.1"
 isort = "~= 5.13.2"
 black = "~= 24.10.0"
 
-
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=2.1"]
+build-backend = "poetry.core.masonry.api"
