@@ -10,7 +10,7 @@ keywords = ["OpenAPI", "OpenAPI-Generator", "Luno API"]
 include = ["luno_openapi/py.typed"]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.10"
 
 urllib3 = ">= 2.2.2"
 python-dateutil = ">= 2.9.0"
